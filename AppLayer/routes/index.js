@@ -672,7 +672,7 @@ app.get(
         
         if(videoGenere == "Series")
         {
-            var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '"+videoLastId+"' LIMIT "+videoEndLimit;
+            var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image, t2.season_table_id FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '"+videoLastId+"' GROUP BY t3.series_id LIMIT "+videoEndLimit;
             
             db.query(videoDetailQuery, function(errm, resultm){
 
@@ -683,6 +683,8 @@ app.get(
                         var videoId = resultm[i].series_id;
                         var videoName = resultm[i].series_name;
                         var home_image = resultm[i].series_home_image;
+                        var season_table_id = resultm[i].season_table_id;
+
 
 
                             seriesData = {};
@@ -690,6 +692,7 @@ app.get(
                             seriesData.videoId = videoId;
                             seriesData.videoName = videoName;
                             seriesData.home_image = home_image;
+                            seriesData.season_id = season_table_id;
     
                             data.push(seriesData);
                             j = j + 1;
