@@ -2,7 +2,7 @@ var goviddo = goviddo || {};
 
 (function (goviddo) {
     goviddo.config = {
-        port: 3000,
+        port: 2000,
         host: 'localhost',
         user: 'root',
         password: 'power123',
