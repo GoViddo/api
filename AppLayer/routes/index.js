@@ -234,7 +234,7 @@ module.exports = {
         data = [];
 
 
-        var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
+        var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = "+seasonId+" and `status` = '1'";
 
         console.log(videoDetailQuery)
 
