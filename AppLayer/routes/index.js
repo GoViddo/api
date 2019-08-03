@@ -236,6 +236,8 @@ module.exports = {
 
         var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
 
+        console.log(videoDetailQuery)
+
         db.query(videoDetailQuery, function(errm, resultm){
 
             var j = 0;
