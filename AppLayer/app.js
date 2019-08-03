@@ -10,7 +10,7 @@ const cmd = require('node-cmd');
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, getSeriesDetails,  register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, getSeriesDetails, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -63,6 +63,7 @@ app.use(function(req, res, next) {
 app.get('/config', getConfig);
 app.post('/register', register);
 app.post("/getSeriesDetails", getSeriesDetails);
+app.post("/getSeasonDetails", getSeasonDetails);
 app.post('/login', login);
 app.post('/checkWalletName', checkWalletName);
 app.post('/getVideoGenereId', getVideoGenereId);
