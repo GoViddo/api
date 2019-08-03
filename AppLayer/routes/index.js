@@ -234,8 +234,14 @@ module.exports = {
         data = [];
 
 
-        var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
-
+        if(seasonId != "")
+        {
+            var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
+        }
+        else{
+            var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `status` = '1'";
+        }
+        
         console.log(videoDetailQuery)
 
         db.query(videoDetailQuery, function(errm, resultm){
