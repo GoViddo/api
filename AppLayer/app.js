@@ -5,7 +5,6 @@ const path = require('path');
 const config = require('./config').config;
 const app = express();
 const cmd = require('node-cmd');
-var cors = require('cors')
 
 
 // List globals
