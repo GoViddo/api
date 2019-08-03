@@ -226,6 +226,54 @@ module.exports = {
     },
 
 
+    getSeasonDetails(req, res)
+    {
+        let seriesId = req.body.seriesId;
+        let seasonId = req.body.seasonId;
+        resp = {};
+        data = [];
+
+
+        var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
+
+        db.query(videoDetailQuery, function(errm, resultm){
+
+            var j = 0;
+        
+            for(var i = 0; i< resultm.length; i++)
+            {
+                    var videoId = resultm[i].series_id;
+                    var videoName = resultm[i].series_name;
+                    var home_image = resultm[i].series_home_image;
+                    var season_table_id = resultm[i].season_table_id;
+
+
+                        seriesData = {};
+
+                        seriesData.videoId = videoId;
+                        seriesData.videoName = videoName;
+                        seriesData.home_image = home_image;
+                        seriesData.season_id = season_table_id;
+
+                        data.push(seriesData);
+                        j = j + 1;
+                        
+                        if(j == resultm.length)
+                        {
+                            resp.message = "success";
+                            resp.data = data;
+                            return res.status(200).send(resp);
+                        }
+
+            }
+
+        });
+
+        
+
+    },
+
+
 
     shareUrl: (req, res) => {
         
