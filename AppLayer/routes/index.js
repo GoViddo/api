@@ -244,28 +244,46 @@ module.exports = {
         
             for(var i = 0; i< resultm.length; i++)
             {
-                    var videoId = resultm[i].series_id;
-                    var videoName = resultm[i].series_name;
-                    var home_image = resultm[i].series_home_image;
-                    var season_table_id = resultm[i].season_table_id;
+                var videoId = resultm[i].video_id;
+                var videoName = resultm[i].show_name;
+                var created_date = resultm[i].created_date;
+                var director = resultm[i].director;
+                var duration = resultm[i].duration;
+                var home_image = resultm[i].home_image;
+                var shorten_text = resultm[i].shorten_text;
+                var vdo_cipher_id = resultm[i].vdo_cipher_id;
+                var jw_video_id = resultm[i].jw_video_id;
+                var video_tags = resultm[i].video_tags;
+                var video_description = resultm[i].video_description;
+                var video_views_count = resultm[i].video_views_count;
+                var video_earnings = resultm[i].video_earnings;
 
 
-                        seriesData = {};
 
-                        seriesData.videoId = videoId;
-                        seriesData.videoName = videoName;
-                        seriesData.home_image = home_image;
-                        seriesData.season_id = season_table_id;
+                    videoData = {};
 
-                        data.push(seriesData);
-                        j = j + 1;
-                        
-                        if(j == resultm.length)
-                        {
-                            resp.message = "success";
-                            resp.data = data;
-                            return res.status(200).send(resp);
-                        }
+                    videoData.videoId = videoId;
+                    videoData.videoName = videoName;
+                    videoData.created_date = created_date;
+                    videoData.director = director;
+                    videoData.duration = duration;
+                    videoData.home_image = home_image;
+                    videoData.shorten_text = shorten_text;
+                    videoData.video_player_id = jw_video_id;
+                    videoData.video_tags = video_tags;
+                    videoData.video_description = video_description;
+                    videoData.video_views_count = video_views_count;
+                    videoData.video_earnings = video_earnings;
+
+                    data.push(videoData);
+                    j = j + 1;
+                    
+                    if(j == resultm.length)
+                    {
+                        resp.message = "success";
+                        resp.data = data;
+                        return res.status(200).send(resp);
+                    }
 
             }
 
