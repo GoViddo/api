@@ -174,7 +174,7 @@ module.exports = {
     },
 
 
-    getSeriesDetaisl(req, res)
+    getSeriesDetails(req, res)
     {
         let seriesId = req.body.seriesId;
         
@@ -184,6 +184,10 @@ module.exports = {
 
             var j = 0;
         
+            resp = {};
+            data = [];
+    
+
             for(var i = 0; i< resultm.length; i++)
             {
                     var season_id = resultm[i].season_table_id;
@@ -194,7 +198,7 @@ module.exports = {
                     var season_launch_date = resultm[i].season_launch_date;
                     var season_end_date = resultm[i].season_end_date;
 
-                    seasonDetails = {};
+                    var seasonDetails = {};
 
                     seasonDetails.season_id = season_id;
                     seasonDetails.season_name = season_name;
