@@ -27,8 +27,6 @@ module.exports = {
         });
     },
 
-
-
     getSliderImageData: (req, res) => {
         let sliderMaxCount = req.body.sliderMaxCount;
 
@@ -67,6 +65,162 @@ module.exports = {
         });
 
     },
+
+    getVideoData: (req, res) => {
+        let videoGenere = req.body.videoGenere;
+        let videoEndLimit = req.body.videoLimit;
+        let videoLastId = req.body.videoLastId;
+
+        resp = {};
+        data = [];
+
+        
+        if(videoGenere == "Series")
+        {
+            var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image, t2.season_table_id FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '"+videoLastId+"' GROUP BY t3.series_id LIMIT "+videoEndLimit;
+            
+            db.query(videoDetailQuery, function(errm, resultm){
+
+                var j = 0;
+            
+                for(var i = 0; i< resultm.length; i++)
+                {
+                        var videoId = resultm[i].series_id;
+                        var videoName = resultm[i].series_name;
+                        var home_image = resultm[i].series_home_image;
+                        var season_table_id = resultm[i].season_table_id;
+
+
+
+                            seriesData = {};
+    
+                            seriesData.videoId = videoId;
+                            seriesData.videoName = videoName;
+                            seriesData.home_image = home_image;
+                            seriesData.season_id = season_table_id;
+    
+                            data.push(seriesData);
+                            j = j + 1;
+                            
+                            if(j == resultm.length)
+                            {
+                                resp.message = "success";
+                                resp.data = data;
+                                return res.status(200).send(resp);
+                            }
+
+                }
+    
+            });
+    
+        }
+        else{
+            var videoDetailQuery = "SELECT t1.video_id, t1.show_name, t1.created_date, t1.director, t1.duration, t1.home_image, t1.shorten_text, t1.show_on_home_page, t1.slug, t1.vdo_cipher_id, t1.jw_video_id, t1.video_tags, t1.video_description, t1.video_views_count, t1.video_earnings, t2.video_genere_id, t2.video_genere_name FROM video_table as t1 LEFT JOIN video_genere_table as t2 ON t1.video_genere_type = t2.video_genere_id WHERE t2.video_genere_name = '"+videoGenere+"' and t1.status = 1 and t1.video_id > '"+videoLastId+"' LIMIT "+videoEndLimit;
+
+            db.query(videoDetailQuery, function(errm, resultm){
+
+                var j = 0;  
+                for(var i = 0; i< resultm.length; i++)
+                {
+                        var videoId = resultm[i].video_id;
+                        var videoName = resultm[i].show_name;
+                        var created_date = resultm[i].created_date;
+                        var director = resultm[i].director;
+                        var duration = resultm[i].duration;
+                        var home_image = resultm[i].home_image;
+                        var shorten_text = resultm[i].shorten_text;
+                        var vdo_cipher_id = resultm[i].vdo_cipher_id;
+                        var jw_video_id = resultm[i].jw_video_id;
+                        var video_tags = resultm[i].video_tags;
+                        var video_description = resultm[i].video_description;
+                        var video_views_count = resultm[i].video_views_count;
+                        var video_earnings = resultm[i].video_earnings;
+
+
+
+                            videoData = {};
+    
+                            videoData.videoId = videoId;
+                            videoData.videoName = videoName;
+                            videoData.created_date = created_date;
+                            videoData.director = director;
+                            videoData.duration = duration;
+                            videoData.home_image = home_image;
+                            videoData.shorten_text = shorten_text;
+                            videoData.video_player_id = jw_video_id;
+                            videoData.video_tags = video_tags;
+                            videoData.video_description = video_description;
+                            videoData.video_views_count = video_views_count;
+                            videoData.video_earnings = video_earnings;
+
+                            data.push(videoData);
+                            j = j + 1;
+                            
+                            if(j == resultm.length)
+                            {
+                                resp.message = "success";
+                                resp.data = data;
+                                return res.status(200).send(resp);
+                            }
+
+                }
+
+            });
+    
+        }
+        
+        
+
+    },
+
+
+    getSeriesDetaisl(req, res)
+    {
+        let seriesId = req.body.seriesId;
+        
+        var videoDetailQuery = "SELECT * FROM `series_season_details_table` WHERE `series_number` = '"+seriesId+"' and `season_status` = '1'";
+
+        db.query(videoDetailQuery, function(errm, resultm){
+
+            var j = 0;
+        
+            for(var i = 0; i< resultm.length; i++)
+            {
+                    var season_id = resultm[i].season_table_id;
+                    var season_name = resultm[i].season_name;
+                    var season_home_image = resultm[i].season_home_image;
+                    var season_number = resultm[i].season_number;
+                    var season_description = resultm[i].season_description;
+                    var season_launch_date = resultm[i].season_launch_date;
+                    var season_end_date = resultm[i].season_end_date;
+
+                    seasonDetails = {};
+
+                    seasonDetails.season_id = season_id;
+                    seasonDetails.season_name = season_name;
+                    seasonDetails.season_home_image = season_home_image;
+                    seasonDetails.season_number = season_number;
+                    seasonDetails.season_description = season_description;
+                    seasonDetails.season_launch_date = season_launch_date;
+                    seasonDetails.season_end_date = season_end_date;
+
+                    data.push(seasonDetails);
+                    j = j + 1;
+                        
+                    if(j == resultm.length)
+                    {
+                        resp.message = "success";
+                        resp.data = data;
+                        return res.status(200).send(resp);
+                    }
+
+            }
+
+        });
+        
+
+    },
+
 
 
     shareUrl: (req, res) => {
@@ -658,117 +812,7 @@ app.get(
 
     },
 
-
-
-
-    getVideoData: (req, res) => {
-        let videoGenere = req.body.videoGenere;
-        let videoEndLimit = req.body.videoLimit;
-        let videoLastId = req.body.videoLastId;
-
-        resp = {};
-        data = [];
-
-        
-        if(videoGenere == "Series")
-        {
-            var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image, t2.season_table_id FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '"+videoLastId+"' GROUP BY t3.series_id LIMIT "+videoEndLimit;
-            
-            db.query(videoDetailQuery, function(errm, resultm){
-
-                var j = 0;
-            
-                for(var i = 0; i< resultm.length; i++)
-                {
-                        var videoId = resultm[i].series_id;
-                        var videoName = resultm[i].series_name;
-                        var home_image = resultm[i].series_home_image;
-                        var season_table_id = resultm[i].season_table_id;
-
-
-
-                            seriesData = {};
     
-                            seriesData.videoId = videoId;
-                            seriesData.videoName = videoName;
-                            seriesData.home_image = home_image;
-                            seriesData.season_id = season_table_id;
-    
-                            data.push(seriesData);
-                            j = j + 1;
-                            
-                            if(j == resultm.length)
-                            {
-                                resp.message = "success";
-                                resp.data = data;
-                                return res.status(200).send(resp);
-                            }
-
-                }
-    
-            });
-    
-        }
-        else{
-            var videoDetailQuery = "SELECT t1.video_id, t1.show_name, t1.created_date, t1.director, t1.duration, t1.home_image, t1.shorten_text, t1.show_on_home_page, t1.slug, t1.vdo_cipher_id, t1.jw_video_id, t1.video_tags, t1.video_description, t1.video_views_count, t1.video_earnings, t2.video_genere_id, t2.video_genere_name FROM video_table as t1 LEFT JOIN video_genere_table as t2 ON t1.video_genere_type = t2.video_genere_id WHERE t2.video_genere_name = '"+videoGenere+"' and t1.status = 1 and t1.video_id > '"+videoLastId+"' LIMIT "+videoEndLimit;
-
-            db.query(videoDetailQuery, function(errm, resultm){
-
-                var j = 0;  
-                for(var i = 0; i< resultm.length; i++)
-                {
-                        var videoId = resultm[i].video_id;
-                        var videoName = resultm[i].show_name;
-                        var created_date = resultm[i].created_date;
-                        var director = resultm[i].director;
-                        var duration = resultm[i].duration;
-                        var home_image = resultm[i].home_image;
-                        var shorten_text = resultm[i].shorten_text;
-                        var vdo_cipher_id = resultm[i].vdo_cipher_id;
-                        var jw_video_id = resultm[i].jw_video_id;
-                        var video_tags = resultm[i].video_tags;
-                        var video_description = resultm[i].video_description;
-                        var video_views_count = resultm[i].video_views_count;
-                        var video_earnings = resultm[i].video_earnings;
-
-
-
-                            videoData = {};
-    
-                            videoData.videoId = videoId;
-                            videoData.videoName = videoName;
-                            videoData.created_date = created_date;
-                            videoData.director = director;
-                            videoData.duration = duration;
-                            videoData.home_image = home_image;
-                            videoData.shorten_text = shorten_text;
-                            videoData.video_player_id = jw_video_id;
-                            videoData.video_tags = video_tags;
-                            videoData.video_description = video_description;
-                            videoData.video_views_count = video_views_count;
-                            videoData.video_earnings = video_earnings;
-
-                            data.push(videoData);
-                            j = j + 1;
-                            
-                            if(j == resultm.length)
-                            {
-                                resp.message = "success";
-                                resp.data = data;
-                                return res.status(200).send(resp);
-                            }
-
-                }
-
-            });
-    
-        }
-        
-        
-
-    },
-
-
     watchLaterList: (req, res) => {
 
         let email = req.body.email;
@@ -1229,10 +1273,6 @@ app.get(
         })
 
     },
-
-
-
-
 
 
 
