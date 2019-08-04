@@ -247,10 +247,8 @@ module.exports = {
 
             var j = 0;
 
-            console.log(errm);
             if(resultm.length == 0)
             {
-                console.log("response here");
                 resp.message = "failed";
                 return res.status(300).send(resp);
 
