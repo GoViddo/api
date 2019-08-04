@@ -242,12 +242,13 @@ module.exports = {
             var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `status` = '1' and `season_id` IS NULL";
         }
         
-        console.log(videoDetailQuery)
 
         db.query(videoDetailQuery, function(errm, resultm){
 
             var j = 0;
-        
+
+            if(resultm.length < 1)
+            {
             for(var i = 0; i< resultm.length; i++)
             {
                 var videoId = resultm[i].video_id;
@@ -292,6 +293,13 @@ module.exports = {
                     }
 
             }
+
+        }
+        else{
+                        resp.message = "failed";
+                        return res.status(300).send(resp);
+                    
+        }
 
         });
 
