@@ -250,6 +250,14 @@ module.exports = {
             console.log(errm);
             if(resultm.length == 0)
             {
+                console.log("response here");
+                resp.message = "failed";
+                return res.status(300).send(resp);
+
+        }
+        else{
+              
+
             for(var i = 0; i< resultm.length; i++)
             {
                 var videoId = resultm[i].video_id;
@@ -295,11 +303,6 @@ module.exports = {
 
             }
 
-        }
-        else{
-                    console.log("response here");
-                        resp.message = "failed";
-                        return res.status(300).send(resp);
                     
         }
 
