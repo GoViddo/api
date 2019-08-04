@@ -247,7 +247,7 @@ module.exports = {
 
             var j = 0;
 
-            console.log(resultm.length);
+            console.log(errm);
             if(resultm.length == 0)
             {
             for(var i = 0; i< resultm.length; i++)
