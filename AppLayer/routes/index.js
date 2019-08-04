@@ -239,7 +239,7 @@ module.exports = {
             var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `season_id` = '"+seasonId+"' and `status` = '1'";
         }
         else{
-            var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `status` = '1'";
+            var videoDetailQuery = "SELECT * FROM `video_table` WHERE `series_id` = '"+seriesId+"' and `status` = '1' and `season_id` IS NULL";
         }
         
         console.log(videoDetailQuery)
