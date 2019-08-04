@@ -248,7 +248,7 @@ module.exports = {
             var j = 0;
 
             console.log(resultm.length);
-            if(resultm.length < 1)
+            if(resultm.length == 0)
             {
             for(var i = 0; i< resultm.length; i++)
             {
@@ -297,7 +297,7 @@ module.exports = {
 
         }
         else{
-            console.log("response here");
+                    console.log("response here");
                         resp.message = "failed";
                         return res.status(300).send(resp);
                     
