@@ -297,6 +297,7 @@ module.exports = {
 
         }
         else{
+            console.log("response here");
                         resp.message = "failed";
                         return res.status(300).send(resp);
                     
