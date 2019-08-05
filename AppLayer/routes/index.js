@@ -442,7 +442,7 @@ module.exports = {
                         videoDetails.home_image = resultm[i].home_image;
                         videoDetails.shorten_text = resultm[i].shorten_text;
                         videoDetails.vdo_cipher_id = resultm[i].vdo_cipher_id;
-                        videoData.video_player_id = resultm[i].jw_video_id;
+                        videoDetails.video_player_id = resultm[i].jw_video_id;
 
                         data.push(videoDetails);
 
