@@ -108,6 +108,7 @@ module.exports = {
 
                     if (j == resultm.length) {
                         resp.message = "success";
+                        resp.video_genere = videoGenere;
                         resp.data = data;
                         return res.status(200).send(resp);
                     }
@@ -162,6 +163,7 @@ module.exports = {
 
                     if (j == resultm.length) {
                         resp.message = "success";
+                        resp.video_genere = videoGenere;
                         resp.data = data;
                         return res.status(200).send(resp);
                     }
