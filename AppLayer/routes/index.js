@@ -48,6 +48,8 @@ module.exports = {
                 sliderDetails = {};
 
                 sliderDetails.video_id = result[i].video_id;
+                sliderDetails.video_name = result[i].show_name;
+                sliderDetails.video_description = result[i].shorten_text;
                 sliderDetails.slider_image = result[i].banner_image;
                 sliderDetails.shorten_text = result[i].shorten_text;
                 sliderDetails.vdo_cipher_id = result[i].vdo_cipher_id;
