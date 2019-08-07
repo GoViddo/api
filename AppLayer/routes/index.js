@@ -91,6 +91,7 @@ module.exports = {
                     var videoName = resultm[i].series_name;
                     var home_image = resultm[i].series_home_image;
                     var season_table_id = resultm[i].season_table_id;
+                    var video_genere = videoGenere;
 
 
 
@@ -100,6 +101,7 @@ module.exports = {
                     seriesData.videoName = videoName;
                     seriesData.home_image = home_image;
                     seriesData.season_id = season_table_id;
+                    seriesData.video_genere = video_genere;
 
                     data.push(seriesData);
                     j = j + 1;
@@ -135,12 +137,14 @@ module.exports = {
                     var video_description = resultm[i].video_description;
                     var video_views_count = resultm[i].video_views_count;
                     var video_earnings = resultm[i].video_earnings;
+                    var video_genere = videoGenere;
 
 
 
                     videoData = {};
 
                     videoData.videoId = videoId;
+                    videoData.video_genere = video_genere;
                     videoData.videoName = videoName;
                     videoData.created_date = created_date;
                     videoData.director = director;
