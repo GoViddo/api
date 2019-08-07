@@ -101,14 +101,14 @@ module.exports = {
                     seriesData.videoName = videoName;
                     seriesData.home_image = home_image;
                     seriesData.season_id = season_table_id;
-                    seriesData.video_genere = video_genere;
+                    seriesData.videoGenere = video_genere;
 
                     data.push(seriesData);
                     j = j + 1;
 
                     if (j == resultm.length) {
                         resp.message = "success";
-                        resp.video_genere = videoGenere;
+                        resp.videoGenere = videoGenere;
                         resp.data = data;
                         return res.status(200).send(resp);
                     }
@@ -145,7 +145,7 @@ module.exports = {
                     videoData = {};
 
                     videoData.videoId = videoId;
-                    videoData.video_genere = video_genere;
+                    videoData.videoGenere = video_genere;
                     videoData.videoName = videoName;
                     videoData.created_date = created_date;
                     videoData.director = director;
@@ -163,7 +163,7 @@ module.exports = {
 
                     if (j == resultm.length) {
                         resp.message = "success";
-                        resp.video_genere = videoGenere;
+                        resp.videoGenere = videoGenere;
                         resp.data = data;
                         return res.status(200).send(resp);
                     }
