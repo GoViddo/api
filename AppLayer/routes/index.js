@@ -79,46 +79,46 @@ module.exports = {
         data = [];
 
 
-        if (videoGenere == "Series") {
-            var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image, t2.season_table_id FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '" + videoLastId + "' GROUP BY t3.series_id LIMIT " + videoEndLimit;
+        // if (videoGenere == "Series") {
+        //     var videoDetailQuery = "SELECT t3.series_name, t3.series_id, t3.series_home_image, t2.season_table_id FROM series_details_table as t3 LEFT JOIN series_season_details_table as t2 ON t2.series_number = t3.series_id WHERE t3.series_status = 1 and t3.series_id > '" + videoLastId + "' GROUP BY t3.series_id LIMIT " + videoEndLimit;
 
-            db.query(videoDetailQuery, function (errm, resultm) {
+        //     db.query(videoDetailQuery, function (errm, resultm) {
 
-                var j = 0;
+        //         var j = 0;
 
-                for (var i = 0; i < resultm.length; i++) {
-                    var videoId = resultm[i].series_id;
-                    var videoName = resultm[i].series_name;
-                    var home_image = resultm[i].series_home_image;
-                    var season_table_id = resultm[i].season_table_id;
-                    var video_genere = videoGenere;
+        //         for (var i = 0; i < resultm.length; i++) {
+        //             var videoId = resultm[i].series_id;
+        //             var videoName = resultm[i].series_name;
+        //             var home_image = resultm[i].series_home_image;
+        //             var season_table_id = resultm[i].season_table_id;
+        //             var video_genere = videoGenere;
 
 
 
-                    seriesData = {};
+        //             seriesData = {};
 
-                    seriesData.videoId = videoId;
-                    seriesData.videoName = videoName;
-                    seriesData.home_image = home_image;
-                    seriesData.season_id = season_table_id;
-                    seriesData.videoGenere = video_genere;
+        //             seriesData.videoId = videoId;
+        //             seriesData.videoName = videoName;
+        //             seriesData.home_image = home_image;
+        //             seriesData.season_id = season_table_id;
+        //             seriesData.videoGenere = video_genere;
 
-                    data.push(seriesData);
-                    j = j + 1;
+        //             data.push(seriesData);
+        //             j = j + 1;
 
-                    if (j == resultm.length) {
-                        resp.message = "success";
-                        resp.videoGenere = videoGenere;
-                        resp.data = data;
-                        return res.status(200).send(resp);
-                    }
+        //             if (j == resultm.length) {
+        //                 resp.message = "success";
+        //                 resp.videoGenere = videoGenere;
+        //                 resp.data = data;
+        //                 return res.status(200).send(resp);
+        //             }
 
-                }
+        //         }
 
-            });
+        //     });
 
-        }
-        else {
+        // }
+      //  else {
             var videoDetailQuery = "SELECT t1.video_id, t1.show_name, t1.created_date, t1.director, t1.duration, t1.home_image, t1.shorten_text, t1.show_on_home_page, t1.slug, t1.vdo_cipher_id, t1.jw_video_id, t1.video_tags, t1.video_description, t1.video_views_count, t1.video_earnings, t2.video_genere_id, t2.video_genere_name FROM video_table as t1 LEFT JOIN video_genere_table as t2 ON t1.video_genere_type = t2.video_genere_id WHERE t2.video_genere_name = '" + videoGenere + "' and t1.status = 1 and t1.video_id > '" + videoLastId + "' LIMIT " + videoEndLimit;
 
             db.query(videoDetailQuery, function (errm, resultm) {
@@ -172,7 +172,7 @@ module.exports = {
 
             });
 
-        }
+       // }
 
 
 
