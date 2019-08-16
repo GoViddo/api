@@ -107,7 +107,6 @@ module.exports = {
            
 
             var mailOptions={
-                from : "contact@goviddo.com",
                 to : "mulaniimran27@gmail.com",
                 subject : "Goviddo Forgot Password",
                 text : password
