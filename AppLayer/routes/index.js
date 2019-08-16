@@ -70,6 +70,55 @@ module.exports = {
 
     },
 
+    forgotPassword: (req, res) => 
+    {
+        let email = req.body.email;
+        resp = {};
+        
+        let selectSliderImagesQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+email+"' and `status` = '1'";
+
+        db.query(selectSliderImagesQuery, function (err, result) {
+
+            let resp = {};
+
+            if (err) {
+                resp.message = "failed";
+                resp.data = err;
+                return res.status(500).send(resp);
+            }
+
+            resp.message = "success";
+            var password = result[0].password;
+            
+            var mailOptions={
+                to : "mulaniimran27@gmail.com",
+                subject : "Goviddo Forgot Password",
+                text : password
+            }
+            console.log(mailOptions);
+            smtpTransport.sendMail(mailOptions, function(error, response){
+                if(error){
+                    console.log(error);
+               // res.end("error");
+               resp.disp = "Mail Sent Failuer...";
+
+               return res.status(500).send(resp);
+
+             }else{
+                    console.log("Message sent: " + response.message);
+               // res.end("sent");
+               resp.disp = "Mail Sent Successfully...";
+               return res.status(500).send(resp);
+
+                 }
+        });
+
+           
+
+        })
+
+    },
+
     getVideoData: (req, res) => {
         let videoGenere = req.body.videoGenere;
         let videoEndLimit = req.body.videoLimit;
