@@ -97,8 +97,8 @@ module.exports = {
                 host: 'smtp.gmail.com',
                 port: 587,
                 auth: {
-                    user: 'mulaniimran27@gmail.com',
-                    pass: 'Imrano18#'
+                    user: 'contact@goviddo.com',
+                    pass: 'Contact@GoViddo'
                 },
                 tls: {rejectUnauthorized: false},
                 debug:true
