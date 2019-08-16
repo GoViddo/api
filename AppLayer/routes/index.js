@@ -104,7 +104,7 @@ module.exports = {
             var mailOptions={
                 to : "mulaniimran27@gmail.com",
                 subject : "Goviddo Forgot Password",
-                text : password
+                text : "Goviddo application password for this email id : "+password
             }
             console.log(mailOptions);
             smtpTransport.sendMail(mailOptions, function(error, response){
