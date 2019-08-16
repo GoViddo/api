@@ -1081,7 +1081,7 @@ module.exports = {
                                     return res.status(500).send(resp);
                                 }
 
-                                let walletPassword = "PW5KNGHsfKMvje9TgwFTyWAY8nLLGxARdCvmbXy1KQNcxurhGaiB5";
+                                let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
                                 let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
 
@@ -1298,7 +1298,7 @@ module.exports = {
                             if ((count % 10) == 0) {
 
 
-                                let walletPassword = "PW5KNGHsfKMvje9TgwFTyWAY8nLLGxARdCvmbXy1KQNcxurhGaiB5";
+                                let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
                                 let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
 
@@ -1417,7 +1417,7 @@ module.exports = {
 
                                                     if (likeCountTest % 2 == 0) {
 
-                                                        let walletPassword = "PW5KNGHsfKMvje9TgwFTyWAY8nLLGxARdCvmbXy1KQNcxurhGaiB5";
+                                                        let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
                                                         let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
 
@@ -1824,7 +1824,7 @@ module.exports = {
                     return res.status(200).send(resp);
                 } else {
 
-                    let walletPassword = "PW5KNGHsfKMvje9TgwFTyWAY8nLLGxARdCvmbXy1KQNcxurhGaiB5";
+                    let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
                     let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
                     let cleosCreateActiveKeys = "cleos create key --to-console";
@@ -2151,9 +2151,9 @@ module.exports = {
         var resp = {};
         var activeKeys = {};
         var ownerKeys = {};
+        
 
-
-        let walletPassword = "PW5KNGHsfKMvje9TgwFTyWAY8nLLGxARdCvmbXy1KQNcxurhGaiB5";
+        let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
         let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
         let cleosCreateActiveKeys = "cleos create key --to-console";
