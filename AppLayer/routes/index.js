@@ -97,8 +97,8 @@ module.exports = {
                 host: 'smtp.gmail.com',
                 port: 587,
                 auth: {
-                    user: 'pratik@goviddo.com',
-                    pass: 'Pratik@GoViddo'
+                    user: 'mulaniimran27@gmail.com',
+                    pass: 'Imrano18#'
                 },
                 tls: {rejectUnauthorized: false},
                 debug:true
@@ -107,6 +107,7 @@ module.exports = {
            
 
             var mailOptions={
+                from : "contact@goviddo.com",
                 to : "mulaniimran27@gmail.com",
                 subject : "Goviddo Forgot Password",
                 text : password
