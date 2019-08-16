@@ -92,19 +92,14 @@ module.exports = {
             
             const nodemailer = require("nodemailer");
 
-            smtpTransport = nodemailer.createTransport({
-                service: 'gmail',
-                host: 'smtp.gmail.com',
-                port: 587,
-                auth: {
-                    user: 'mulaniimran27@gmail.com',
-                    pass: 'Imrano18#'
-                },
-                tls: {rejectUnauthorized: false},
-                debug:true
-            });
 
-           
+            var smtpTransport = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'contact@goviddo.com',
+                    pass: 'Contact@GoViddo'
+                }
+                });
 
             var mailOptions={
                 to : "mulaniimran27@gmail.com",
