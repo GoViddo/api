@@ -119,7 +119,7 @@ module.exports = {
                     console.log("Message sent: " + response.message);
                // res.end("sent");
                resp.disp = "Mail Sent Successfully...";
-               return res.status(500).send(resp);
+               return res.status(200).send(resp);
 
                  }
         });
