@@ -90,6 +90,20 @@ module.exports = {
             resp.message = "success";
             var password = result[0].password;
             
+            const nodemailer = require("nodemailer");
+
+            smtpTransport = nodemailer.createTransport({
+                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
+                auth: {
+                    user: 'contact@goviddo.com',
+                    pass: 'Contact@GoViddo'
+                },
+                tls: {rejectUnauthorized: false},
+                debug:true
+            });
+
             var mailOptions={
                 to : "mulaniimran27@gmail.com",
                 subject : "Goviddo Forgot Password",
