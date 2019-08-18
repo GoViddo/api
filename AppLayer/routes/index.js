@@ -96,13 +96,13 @@ module.exports = {
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'mulaniimran27@gmail.com',
-                    pass: 'Imrano18#'
+                    user: 'contact@goviddo.com',
+                    pass: 'Contact@GoViddo'
                 }
                 });
 
             var mailOptions={
-                to : "mulaniimran27@gmail.com",
+                to : email,
                 subject : "Goviddo Forgot Password",
                 text : "Goviddo application password for this email id : "+password
             }
