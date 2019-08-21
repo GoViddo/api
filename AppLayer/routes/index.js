@@ -72,7 +72,8 @@ module.exports = {
 
     getGovTokenCount: (req, res) => {
         var walletName = req.body.walletName;
-        
+
+        console.log(walletName);
         let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
         let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
@@ -82,12 +83,14 @@ module.exports = {
             function (err1, data1, stderr1) {
 
                 url = "cleos -u https://eos.greymass.com/ get currency balance hellogoviddo "+walletName;
-
+                console.log(url);
+       
                 cmd.get(
                     url,
                     function (err, data, stderr) {
 
-
+                        console.log(data);
+       
                         resp.message = "success";
                         resp.walletAmount = data;
                         return res.status(200).send(resp);
