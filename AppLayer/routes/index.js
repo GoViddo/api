@@ -78,6 +78,7 @@ module.exports = {
 
         let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
 
+        var resp = {};
         cmd.get(
             cleosWalletUnlockQuery,
             function (err1, data1, stderr1) {
