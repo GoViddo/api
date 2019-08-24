@@ -2506,7 +2506,7 @@ module.exports = {
                 html: 'Embedded image: <img src="cid:unique@goviddo.igm"/>',
                 attachments: [{
                     filename: 'go.png',
-                    path: 'https://goviddo.com/app/images',
+                    path: 'https://goviddo.com/app/images/go.png',
                     cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
