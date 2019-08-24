@@ -2374,8 +2374,8 @@ module.exports = {
     },
 
     sendEmail: (req, res) => {
-        var toEmail = 'mulaniimran27@gmail.com';
-        var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com";
+        var toEmail = 'mulaniimran97@gmail.com';
+        var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
         var subject = "Activate Your GoViddo Account";
 
         var username = "Imran Mulani";
@@ -2502,7 +2502,7 @@ module.exports = {
 
             var mailOptions = {
                 to: toEmail,
-                cc: ccEmail,
+                bcc: ccEmail,
                 subject: subject,
                 html: body,
                 attachments: [{
