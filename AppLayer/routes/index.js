@@ -2397,7 +2397,7 @@ module.exports = {
             '<tbody>' +
             '<tr>'+
              '<td align="center" valign="top" width="150">&nbsp;</td>' +
-            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="128" src="cid:unique@kreata.ee" width="278" class="CToWUd"></a></td>' +
+            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="128" src="https://scontent.fbom8-1.fna.fbcdn.net/v/t1.0-1/p200x200/31886504_124408131754557_1645784068568121344_n.png?_nc_cat=111&_nc_oc=AQmWTjkh4kQ39q-euomtA1pWFtsWVcZp5PZBaEWuVcWRXqQSv75GmWZf_jk7oJAFmtA&_nc_ht=scontent.fbom8-1.fna&oh=0a19b6344a74d5378af3ec2632d4cb66&oe=5DD9D9EB" width="278" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
             '<table border="0" cellpadding="0" cellspacing="0">' +
             '<tbody>' +
@@ -2503,12 +2503,7 @@ module.exports = {
             var mailOptions = {
                 to: toEmail,
                 subject: subject,
-                html: body,
-                attachments: [{
-                    filename: 'go.png',
-                    path: 'https://goviddo.com/app/images/',
-                    cid: 'unique@kreata.ee' //same cid value as in the html img src
-                }]
+                html: body
             }
             console.log(mailOptions);
             smtpTransport.sendMail(mailOptions, function (error, response) {
