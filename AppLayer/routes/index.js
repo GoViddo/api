@@ -2395,7 +2395,7 @@ module.exports = {
             '<td align="left" valign="top">' +
             '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
             '<tbody>' +
-            '<tr>'
+            '<tr>'+
              '<td align="center" valign="top" width="150">&nbsp;</td>' +
             '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="https://goviddo.com/app/images/LogoGoV.svg" height="128" src="" width="278" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
