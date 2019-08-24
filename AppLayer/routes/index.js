@@ -71,6 +71,7 @@ module.exports = {
     },
 
     getGovTokenCount: (req, res) => {
+
         var walletName = req.body.walletName;
 
         console.log(walletName);
@@ -83,15 +84,15 @@ module.exports = {
             cleosWalletUnlockQuery,
             function (err1, data1, stderr1) {
 
-                url = "cleos -u https://eos.greymass.com/ get currency balance hellogoviddo "+walletName;
+                url = "cleos -u https://eos.greymass.com/ get currency balance hellogoviddo " + walletName;
                 console.log(url);
-       
+
                 cmd.get(
                     url,
                     function (err, data, stderr) {
 
                         console.log(data);
-       
+
                         resp.message = "success";
                         resp.walletAmount = data;
                         return res.status(200).send(resp);
@@ -106,12 +107,11 @@ module.exports = {
 
     },
 
-    forgotPassword: (req, res) => 
-    {
+    forgotPassword: (req, res) => {
         let email = req.body.email;
         resp = {};
-        
-        let selectSliderImagesQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+email+"' and `status` = '1'";
+
+        let selectSliderImagesQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "' and `status` = '1'";
 
         db.query(selectSliderImagesQuery, function (err, result) {
 
@@ -125,7 +125,7 @@ module.exports = {
 
             resp.message = "success";
             var password = result[0].password;
-            
+
             const nodemailer = require("nodemailer");
 
 
@@ -135,32 +135,32 @@ module.exports = {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
                 }
-                });
+            });
 
-            var mailOptions={
-                to : email,
-                subject : "Goviddo Forgot Password",
-                text : "Goviddo application password for this email id : "+password
+            var mailOptions = {
+                to: email,
+                subject: "Goviddo Forgot Password",
+                text: "Goviddo application password for this email id : " + password
             }
             console.log(mailOptions);
-            smtpTransport.sendMail(mailOptions, function(error, response){
-                if(error){
+            smtpTransport.sendMail(mailOptions, function (error, response) {
+                if (error) {
                     console.log(error);
-               // res.end("error");
-               resp.disp = "Mail Sent Failuer...";
+                    // res.end("error");
+                    resp.disp = "Mail Sent Failuer...";
 
-               return res.status(500).send(resp);
+                    return res.status(500).send(resp);
 
-             }else{
+                } else {
                     console.log("Message sent: " + response.message);
-               // res.end("sent");
-               resp.disp = "Mail Sent Successfully...";
-               return res.status(200).send(resp);
+                    // res.end("sent");
+                    resp.disp = "Mail Sent Successfully...";
+                    return res.status(200).send(resp);
 
-                 }
-        });
+                }
+            });
 
-           
+
 
         })
 
@@ -214,61 +214,61 @@ module.exports = {
         //     });
 
         // }
-      //  else {
-            var videoDetailQuery = "SELECT t1.video_id, t1.show_name, t1.created_date, t1.director, t1.duration, t1.home_image, t1.shorten_text, t1.show_on_home_page, t1.slug, t1.vdo_cipher_id, t1.jw_video_id, t1.video_tags, t1.video_description, t1.video_views_count, t1.video_earnings, t2.video_genere_id, t2.video_genere_name FROM video_table as t1 LEFT JOIN video_genere_table as t2 ON t1.video_genere_type = t2.video_genere_id WHERE t2.video_genere_name = '" + videoGenere + "' and t1.status = 1 and t1.video_id > '" + videoLastId + "' LIMIT " + videoEndLimit;
+        //  else {
+        var videoDetailQuery = "SELECT t1.video_id, t1.show_name, t1.created_date, t1.director, t1.duration, t1.home_image, t1.shorten_text, t1.show_on_home_page, t1.slug, t1.vdo_cipher_id, t1.jw_video_id, t1.video_tags, t1.video_description, t1.video_views_count, t1.video_earnings, t2.video_genere_id, t2.video_genere_name FROM video_table as t1 LEFT JOIN video_genere_table as t2 ON t1.video_genere_type = t2.video_genere_id WHERE t2.video_genere_name = '" + videoGenere + "' and t1.status = 1 and t1.video_id > '" + videoLastId + "' LIMIT " + videoEndLimit;
 
-            db.query(videoDetailQuery, function (errm, resultm) {
+        db.query(videoDetailQuery, function (errm, resultm) {
 
-                var j = 0;
-                for (var i = 0; i < resultm.length; i++) {
-                    var videoId = resultm[i].video_id;
-                    var videoName = resultm[i].show_name;
-                    var created_date = resultm[i].created_date;
-                    var director = resultm[i].director;
-                    var duration = resultm[i].duration;
-                    var home_image = resultm[i].home_image;
-                    var shorten_text = resultm[i].shorten_text;
-                    var vdo_cipher_id = resultm[i].vdo_cipher_id;
-                    var jw_video_id = resultm[i].jw_video_id;
-                    var video_tags = resultm[i].video_tags;
-                    var video_description = resultm[i].video_description;
-                    var video_views_count = resultm[i].video_views_count;
-                    var video_earnings = resultm[i].video_earnings;
-                    var video_genere = videoGenere;
+            var j = 0;
+            for (var i = 0; i < resultm.length; i++) {
+                var videoId = resultm[i].video_id;
+                var videoName = resultm[i].show_name;
+                var created_date = resultm[i].created_date;
+                var director = resultm[i].director;
+                var duration = resultm[i].duration;
+                var home_image = resultm[i].home_image;
+                var shorten_text = resultm[i].shorten_text;
+                var vdo_cipher_id = resultm[i].vdo_cipher_id;
+                var jw_video_id = resultm[i].jw_video_id;
+                var video_tags = resultm[i].video_tags;
+                var video_description = resultm[i].video_description;
+                var video_views_count = resultm[i].video_views_count;
+                var video_earnings = resultm[i].video_earnings;
+                var video_genere = videoGenere;
 
 
 
-                    videoData = {};
+                videoData = {};
 
-                    videoData.videoId = videoId;
-                    videoData.videoGenere = video_genere;
-                    videoData.videoName = videoName;
-                    videoData.created_date = created_date;
-                    videoData.director = director;
-                    videoData.duration = duration;
-                    videoData.home_image = home_image;
-                    videoData.shorten_text = shorten_text;
-                    videoData.video_player_id = jw_video_id;
-                    videoData.video_tags = video_tags;
-                    videoData.video_description = video_description;
-                    videoData.video_views_count = video_views_count;
-                    videoData.video_earnings = video_earnings;
+                videoData.videoId = videoId;
+                videoData.videoGenere = video_genere;
+                videoData.videoName = videoName;
+                videoData.created_date = created_date;
+                videoData.director = director;
+                videoData.duration = duration;
+                videoData.home_image = home_image;
+                videoData.shorten_text = shorten_text;
+                videoData.video_player_id = jw_video_id;
+                videoData.video_tags = video_tags;
+                videoData.video_description = video_description;
+                videoData.video_views_count = video_views_count;
+                videoData.video_earnings = video_earnings;
 
-                    data.push(videoData);
-                    j = j + 1;
+                data.push(videoData);
+                j = j + 1;
 
-                    if (j == resultm.length) {
-                        resp.message = "success";
-                        resp.videoGenere = videoGenere;
-                        resp.data = data;
-                        return res.status(200).send(resp);
-                    }
-
+                if (j == resultm.length) {
+                    resp.message = "success";
+                    resp.videoGenere = videoGenere;
+                    resp.data = data;
+                    return res.status(200).send(resp);
                 }
 
-            });
+            }
 
-       // }
+        });
+
+        // }
 
 
 
@@ -382,7 +382,7 @@ module.exports = {
                     videoData.video_description = video_description;
                     videoData.video_views_count = video_views_count;
                     videoData.video_earnings = video_earnings;
-                    
+
 
                     data.push(videoData);
                     j = j + 1;
@@ -440,7 +440,7 @@ module.exports = {
 
                             var channelId = resultm[i].channel_id;
                             previewDetails.video_id = resultm[i].channel_id;
-                           
+
 
                             data.push(previewDetails);
 
@@ -459,7 +459,7 @@ module.exports = {
 
                         var channelId = result[i].subscription_channel_id;
                         previewDetails.video_id = result[i].subscription_channel_id;
-                       
+
 
                         data.push(previewDetails);
 
@@ -765,7 +765,7 @@ module.exports = {
 
         let getUserIdQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + userEmail + "'";
 
-        
+
         db.query(getUserIdQuery, function (err, result) {
 
             var userId = result[0].user_id;
@@ -1775,7 +1775,7 @@ module.exports = {
 
         });
 
-    },  
+    },
 
 
 
@@ -2178,8 +2178,8 @@ module.exports = {
 
     },
 
-   
-   
+
+
 
     createEosMainNetWallet: (req, res) => {
 
@@ -2187,7 +2187,7 @@ module.exports = {
         var resp = {};
         var activeKeys = {};
         var ownerKeys = {};
-        
+
 
         let walletPassword = "PW5J6DgSCymbnMHxPHobR4ez8aYCprahPJKAwzHwQL6JqsbAMPmzB";
 
@@ -2371,15 +2371,166 @@ module.exports = {
         //window.location.href= "market://details?id=com.imfapp.dell.mytabsapp";
         return res.status(200).send("success");
 
+    },
+
+    sendEmail: (req, res) => {
+        var toEmail = 'mulaniimran27@gmail.com';
+        var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com";
+        var subject = "Activate Your GoViddo Account";
+
+        var username = "Imran Mulani";
+
+        var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
+            +'</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+            +'<tbody>' +
+            '<tr>' +
+            +'<td align="center" valign="top">' +
+            +'<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td>' +
+            +'<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td align="left" valign="top">' +
+            +'<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+            +'<tbody>' +
+            +'<tr>'
+            + '<td align="center" valign="top" width="150">&nbsp;</td>' +
+            +'<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="https://goviddo.com/app/images/LogoGoV.svg" height="128" src="" width="278" class="CToWUd"></a></td>' +
+            +'<td align="right" valign="top" width="150">' +
+            +'<table border="0" cellpadding="0" cellspacing="0">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'<tr>' +
+            +'<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+            +'</tr>' +
+            +'<tr>' +
+            +'<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+            +'</tr>' +
+            +'<tr>' +
+            +'<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'<tr>' +
+            +'<td align="center" valign="top">' +
+            +'<table border="0" cellpadding="10" cellspacing="0" width="600">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td>' +
+            +'<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td align="left" valign="top" width="100%">' +
+            +'<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
+
+            +'<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
+
+            +'<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
+
+            +'<p><a href="" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.indianmoviefriend.com/email_verification/?id%3DMTAzMjQ%3D&amp;source=gmail&amp;ust=1566730362270000&amp;usg=AFQjCNG7JCVyUmXdvHYkrw2oghuoHSX9QA"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'<tr>' +
+            +'<td align="center" valign="top">' +
+            +'<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
+            +'<hr class="m_-6590730431353735716hr">' +
+            +'<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
+
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+
+            +'<center>' +
+            +'<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
+            +'&nbsp;' +
+            +'<table border="0" cellpadding="0" cellspacing="0">' +
+            +'<tbody>' +
+            +'<tr>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</td>' +
+            +'</tr>' +
+            +'</tbody>' +
+            +'</table>' +
+            +'</center><div class="yj6qo"></div><div class="adL">' +
+            +'</div></div></div>';
+
+
+
+            const nodemailer = require("nodemailer");
+
+
+            var smtpTransport = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'contact@goviddo.com',
+                    pass: 'Contact@GoViddo'
+                }
+            });
+
+            var mailOptions = {
+                to: toEmail,
+                subject: subject,
+                html: body
+            }
+            console.log(mailOptions);
+            smtpTransport.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                    console.log(error);
+                    // res.end("error");
+                    resp.disp = "Mail Sent Failuer...";
+
+                    return res.status(500).send(resp);
+
+                } else {
+                    console.log("Message sent: " + response.message);
+                    // res.end("sent");
+                    resp.disp = "Mail Sent Successfully...";
+                    return res.status(200).send(resp);
+
+                }
+            });
+
+
+
     }
-
-
-
-
-
-
-
-
 
 
 
