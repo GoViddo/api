@@ -2397,7 +2397,7 @@ module.exports = {
             '<tbody>' +
             '<tr>'+
              '<td align="center" valign="top" width="150">&nbsp;</td>' +
-            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="128" src="https://photos.google.com/u/4/photo/AF1QipMvMz0s3f2tfjGFyrN6ymHvUYRD_D46pFJ856bd" width="278" class="CToWUd"></a></td>' +
+            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="128" src="cid:unique@goviddo.igm" width="278" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
             '<table border="0" cellpadding="0" cellspacing="0">' +
             '<tbody>' +
@@ -2503,10 +2503,10 @@ module.exports = {
             var mailOptions = {
                 to: toEmail,
                 subject: subject,
-                html: 'Embedded image: <img src="cid:unique@goviddo.igm"/>',
+                html: body,
                 attachments: [{
-                    filename: 'go.png',
-                    path: 'https://goviddo.com/app/images/go.png',
+                    filename: 'LogoGoV.svg',
+                    path: 'https://goviddo.com/app/images/LogoGoV.svg',
                     cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
