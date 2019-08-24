@@ -2510,19 +2510,19 @@ module.exports = {
                     cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
-            console.log(mailOptions);
+
+            var resp = {};
+
             smtpTransport.sendMail(mailOptions, function (error, response) {
                 if (error) {
-                    console.log(error);
                     // res.end("error");
-                 
+                    resp.msg = "error";
                     return res.status(500).send(resp);
 
                 } else {
-                    console.log("Message sent: " + response.message);
                     // res.end("sent");
+                    resp.msg = "success";
                     return res.status(200).send(body);
-
                 }
             });
 
