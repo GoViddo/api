@@ -2397,7 +2397,7 @@ module.exports = {
             '<tbody>' +
             '<tr>'+
              '<td align="center" valign="top" width="150">&nbsp;</td>' +
-            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="128" src="cid:unique@goviddo.igm" width="180" class="CToWUd"></a></td>' +
+            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="50" src="cid:unique@goviddo.igm" width="113" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
             '<table border="0" cellpadding="0" cellspacing="0">' +
             '<tbody>' +
