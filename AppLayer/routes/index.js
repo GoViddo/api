@@ -2503,11 +2503,11 @@ module.exports = {
             var mailOptions = {
                 to: toEmail,
                 subject: subject,
-                html: 'Embedded image: <img src="cid:unique@kreata.ee"/>',
+                html: 'Embedded image: <img src="cid:unique@goviddo.igm"/>',
                 attachments: [{
                     filename: 'go.png',
                     path: 'https://goviddo.com/app/images',
-                    cid: 'unique@kreata.ee' //same cid value as in the html img src
+                    cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
             console.log(mailOptions);
