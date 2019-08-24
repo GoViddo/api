@@ -2503,7 +2503,12 @@ module.exports = {
             var mailOptions = {
                 to: toEmail,
                 subject: subject,
-                html: body
+                html: 'Embedded image: <img src="cid:unique@kreata.ee"/>',
+                attachments: [{
+                    filename: 'LogoGoV.svg',
+                    path: 'https://goviddo.com/app/images',
+                    cid: 'unique@kreata.ee' //same cid value as in the html img src
+                }]
             }
             console.log(mailOptions);
             smtpTransport.sendMail(mailOptions, function (error, response) {
