@@ -2397,7 +2397,7 @@ module.exports = {
             '<tbody>' +
             '<tr>'+
              '<td align="center" valign="top" width="150">&nbsp;</td>' +
-            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://goviddo.com/app/images/LogoGoV.svg" height="128" src="" width="278" class="CToWUd"></a></td>' +
+            '<td align="center" height="150" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="GoViddo" height="128" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://goviddo.com/app/images/LogoGoV.svg" width="278" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
             '<table border="0" cellpadding="0" cellspacing="0">' +
             '<tbody>' +
