@@ -2505,8 +2505,8 @@ module.exports = {
                 subject: subject,
                 html: body,
                 attachments: [{
-                    filename: 'LogoGoV.svg',
-                    path: 'https://goviddo.com/app/images/LogoGoV.svg',
+                    filename: 'govlogo.png',
+                    path: 'https://goviddo.com/appimg/govlogo.png',
                     cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
