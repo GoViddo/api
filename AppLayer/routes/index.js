@@ -2505,8 +2505,8 @@ module.exports = {
                 subject: subject,
                 html: 'Embedded image: <img src="cid:unique@kreata.ee"/>',
                 attachments: [{
-                    filename: 'LogoGoV.svg',
-                    path: 'https://goviddo.com/app/images',
+                    filename: 'go.png',
+                    path: 'https://goviddo.com/app/images/',
                     cid: 'unique@kreata.ee' //same cid value as in the html img src
                 }]
             }
