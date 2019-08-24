@@ -2498,6 +2498,15 @@ module.exports = {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
                 }
+            },
+            {
+                // default message fields
+    
+                // sender info
+                from: 'GoViddo <contact@goviddo.com>',
+                headers: {
+                    'X-Laziness-level': 1000 // just an example header, no need to use this
+                }
             });
 
             var mailOptions = {
