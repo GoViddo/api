@@ -2502,6 +2502,7 @@ module.exports = {
 
             var mailOptions = {
                 to: toEmail,
+                cc: ccEmail,
                 subject: subject,
                 html: body,
                 attachments: [{
@@ -2518,11 +2519,10 @@ module.exports = {
                     // res.end("error");
                     resp.msg = "error";
                     return res.status(500).send(resp);
-
                 } else {
                     // res.end("sent");
                     resp.msg = "success";
-                    return res.status(200).send(body);
+                    return res.status(200).send(resp);
                 }
             });
 
