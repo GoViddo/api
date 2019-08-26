@@ -1979,7 +1979,7 @@ module.exports = {
 
 
                                     //testnet account creation command
-                                    let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.25 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
+                                    let createEOSWalletCommand = "cleos -u https://jungle2.cryptolions.io:443 system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.25 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
 
 
                                     console.log('Command to be executed', createEOSWalletCommand);
@@ -1991,22 +1991,8 @@ module.exports = {
                                             if (err == null) {
                                                 resp.accountCreatedMsg = "Account Created Successfully";
                                                 console.log("Account Created Successfully" + data);
-                                            }
-                                            else {
-                                                resp.accountCreatedMsg = "Account creation failed";
-                                                console.log("Account creation failed" + err);
-                                            }
-                                        }
-                                    );
 
-
-                                    resolve(resp);
-
-                                }
-                            );
-                        })
-                    }).then(function (resp) {
-                        // send the user's details to the database
+                                                // send the user's details to the database
                         let query = "INSERT INTO user_table (first_name, last_name, eosio_account_name, email_id, password) VALUES ('" + firstName + "', '" + lastName + "', '" + walletName + "', '" + email + "', '" + password + "')";
                         db.query(query, function (err, result) {
                             if (err) {
@@ -2037,11 +2023,7 @@ module.exports = {
                                         db.query(queryInsertTransactions, function (mresr, mresultmm) {
 
                                                         return res.status(200).send(resp);
-                                                    
-                                                
                                     
-                                    
-
                                         });
 
                                     });
@@ -2052,6 +2034,23 @@ module.exports = {
 
 
                         });
+
+                                            }
+                                            else {
+                                                resp.accountCreatedMsg = "Account creation failed";
+                                                console.log("Account creation failed" + err);
+                                                return res.status(200).send(resp);
+
+                                            }
+                                        }
+                                    );
+
+
+                                    resolve(resp);
+
+                                }
+                            );
+                        })
                     });
                 }
 
