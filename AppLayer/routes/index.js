@@ -1979,7 +1979,7 @@ module.exports = {
 
 
                                     //testnet account creation command
-                                    let createEOSWalletCommand = "cleos -u https://jungle2.cryptolions.io:443 system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
+                                    let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
 
 
                                     console.log('Command to be executed', createEOSWalletCommand);
@@ -2159,7 +2159,7 @@ module.exports = {
 
 
 
-                            let sendEOSTokensRegistration = "cleos -u https://jungle2.cryptolions.io:443 push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
+                            let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
                             console.log(sendEOSTokensRegistration);
                             cmd.get(
                                 sendEOSTokensRegistration,
