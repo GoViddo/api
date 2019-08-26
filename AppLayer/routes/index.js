@@ -2001,7 +2001,7 @@ module.exports = {
                             }
                             resp.message = "Registration successful";
 
-                            var toEmail = email;
+        var toEmail = email;
         var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
         var subject = "Activate Your GoViddo Account";
 
@@ -2148,8 +2148,7 @@ module.exports = {
                 }]
             }
 
-            var resp = {};
-
+            
             smtpTransport.sendMail(mailOptions, function (error, response) {
                 if (error) {
                     // res.end("error");
