@@ -2038,11 +2038,11 @@ module.exports = {
 
                                             console.log(resp);
 
-                                            var toEmail = 'mulaniimran97@gmail.com';
+                                            var toEmail = email;
         var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
         var subject = "Activate Your GoViddo Account";
 
-        var username = "Imran Mulani";
+        var username = firstName + " "+ lastName;
 
         var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
             '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
