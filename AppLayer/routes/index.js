@@ -1979,7 +1979,7 @@ module.exports = {
 
 
                                     //testnet account creation command
-                                    let createEOSWalletCommand = "cleos -u https://jungle2.cryptolions.io:443 system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.25 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
+                                    let createEOSWalletCommand = "cleos -u https://jungle2.cryptolions.io:443 system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
 
 
                                     console.log('Command to be executed', createEOSWalletCommand);
