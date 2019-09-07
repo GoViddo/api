@@ -1935,12 +1935,12 @@ module.exports = {
                                     var activePrivateKey = activePrivateKey.replace(/\n/g, '');
                                     var activePublicKey = activePublicKey.replace(/\n/g, '');
                                     //resp.createActiveKeyMsg = "Active Keys Created";
+                                    importKey = activePrivateKey;
 
 
                                     activeKeys.activePrivateKey = activePrivateKey;
                                     activeKeys.activePublicKey = activePublicKey;
-                                    importKey = activePrivateKey;
-
+                                    
                                     resp.activePublicKey = activePublicKey;
 
                                     activeKeysArray = [];
