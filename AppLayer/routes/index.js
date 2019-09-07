@@ -2171,8 +2171,12 @@ module.exports = {
                                 function (err, data, stderr) {
 
                                     let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+activeKeys.activePrivateKey;
-                                    console.log(importKeysCommand);
+                                    cmd.get(
+                                        importKeysCommand,
+                                        function (err, data, stderr) {
 
+                                        });
+        
 
                                     let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
 
