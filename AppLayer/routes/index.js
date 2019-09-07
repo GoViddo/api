@@ -1348,6 +1348,7 @@ module.exports = {
                                             sendEOSTokensRegistration,
                                             function (err, data, stderr) {
 
+                                                
                                                 let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','10 shares','hellogoviddo')";
 
                                                 db.query(queryInsertTransactions, function (mresr, mresultmm) {
@@ -1831,6 +1832,9 @@ module.exports = {
         let firstName = req.body.firstName;
         let lastName = req.body.lastName;
         let walletName = req.body.walletName;
+
+        var importKey;
+
         var resp = {};
         var activeKeys = {};
         var ownerKeys = {};
@@ -1935,6 +1939,7 @@ module.exports = {
 
                                     activeKeys.activePrivateKey = activePrivateKey;
                                     activeKeys.activePublicKey = activePublicKey;
+                                    importKey = activePrivateKey;
 
                                     resp.activePublicKey = activePublicKey;
 
@@ -2164,6 +2169,10 @@ module.exports = {
                             cmd.get(
                                 sendEOSTokensRegistration,
                                 function (err, data, stderr) {
+
+                                    let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+importKey;
+                                    console.log(importKeysCommand);
+
 
                                     let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
 
