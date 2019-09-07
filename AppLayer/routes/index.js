@@ -2170,7 +2170,7 @@ module.exports = {
                                 sendEOSTokensRegistration,
                                 function (err, data, stderr) {
 
-                                    let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+importKey;
+                                    let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+activeKeys.activePrivateKey;
                                     console.log(importKeysCommand);
 
 
