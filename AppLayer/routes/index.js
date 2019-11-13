@@ -1993,6 +1993,7 @@ module.exports = {
                                     cmd.get(
                                         createEOSWalletCommand,
                                         function (err, data, stderr) {
+                                            console.log(err);
                                             if (err == null) {
                                                 resp.accountCreatedMsg = "Account Created Successfully";
                                                 console.log("Account Created Successfully" + data);
