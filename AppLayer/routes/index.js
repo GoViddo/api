@@ -2752,7 +2752,7 @@ module.exports = {
 
     getIndexProjectList: (req, res) => {
 
-        let configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND()";
+        let configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 10";
 
         var resp = {};
         resp.status = "success";
