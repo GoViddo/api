@@ -67,6 +67,7 @@ app.use(function(req, res, next) {
 
 // routes for the app
 app.get('/config', getConfig);
+app.get('/crowdConfig', crowdConfig);
 app.post('/getGovTokenCount', getGovTokenCount);
 app.post('/forgotPassword', forgotPassword);
 app.post('/register', register);
