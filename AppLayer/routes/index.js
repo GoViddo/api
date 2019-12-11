@@ -2851,6 +2851,62 @@ module.exports = {
         
             return res.status(200).send(resp);
         });
+    },
+
+
+    getAllDataWithCatId: (req, res) => {
+
+        let categoryId = req.body.catid;
+        var configQuery = "";
+        if(categoryId == 0)
+        {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
+        }
+        else{
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_category_details` = '"+categoryId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
+        }
+      
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.crowdfund_project_id = result[i].crowdfund_project_id;
+               
+                details.crowdfund_project_title = result[i].crowdfund_project_title;
+                details.crowdfund_short_description = result[i].crowdfund_short_description;
+                details.crowdfund_project_logo = result[i].crowdfund_project_logo;
+                details.crowdfund_project_banner_image = result[i].crowdfund_project_banner_image;
+                details.crowdfund_project_idea_description = result[i].crowdfund_project_idea_description;
+                details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
+                details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
+                details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
+                details.crowdfund_total_target	 = result[i].crowdfund_total_target;
+                details.crowdfund_total_raised = result[i].crowdfund_total_raised;
+                details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
+                details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
+                details.crowd_funding_category_name = result[i].crowd_funding_category_name;
+                details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
+                details.crowdfund_project_approval = result[i].crowdfund_project_approval;
+                details.crowdfund_project_status = result[i].crowdfund_project_status;
+               
+                data.push(details);
+
+            }
+
+            resp.data = data;
+        
+            return res.status(200).send(resp);
+        });
     }
 
 
