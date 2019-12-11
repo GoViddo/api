@@ -2809,9 +2809,7 @@ module.exports = {
         else{
             configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_id` = '"+projectId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
         }
-
-        console.log(configQuery);
-        
+      
         var resp = {};
         resp.status = "success";
 
