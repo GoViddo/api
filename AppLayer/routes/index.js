@@ -2868,6 +2868,7 @@ module.exports = {
       
         var resp = {};
         resp.status = "success";
+        resp.catidreturn = categoryId;
 
         db.query(configQuery, function (err, result) {
             if (err) {
