@@ -2736,8 +2736,8 @@ module.exports = {
 
                 var details = {};
 
-                details.catname = result[i].crowd_fund_cat_id;
-                details.catid = result[i].crowd_funding_category_name;
+                details.catid = result[i].crowd_fund_cat_id;
+                details.catname = result[i].crowd_funding_category_name;
 
                 data.push(details);
 
