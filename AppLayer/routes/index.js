@@ -2902,23 +2902,43 @@ module.exports = {
         
         var configQuery = "";
 
-        
-        configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('"+full_name+"', '"+emailid+"', '"+password+"', '"+dob+"', '"+account_holder_type+"')";
-        
-      
-        var resp = {};
-        resp.status = "success";
-
-        console.log(configQuery);
-
+        var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailid+"'";
         db.query(configQuery, function (err, result) {
             if (err) {
-                return res.status(500).send(err);
-            }
-                resp.userid = result.insertId;
+                resp.message = err;
                 return res.status(200).send(resp);
+            }
+            else {
+
+
+                console.log(result.length);
+
+                if (result.length) {
+                    resp.message = "User with this email already exists";
+                    return res.status(200).send(resp);
+                } else {
+                    configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('"+full_name+"', '"+emailid+"', '"+password+"', '"+dob+"', '"+account_holder_type+"')";
+        
+      
+                    var resp = {};
+                    resp.status = "success";
+            
+                    console.log(configQuery);
+            
+                    db.query(configQuery, function (err1, result1) {
+                        if (err1) {
+                            return res.status(500).send(err1);
+                        }
+                            resp.userid = result1.insertId;
+                            return res.status(200).send(resp);
+                    });
+            
+                }
+            }
         });
-    },
+
+
+            },
 
 
     getAllDataWithCatId: (req, res) => {
