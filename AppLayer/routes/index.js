@@ -2903,7 +2903,7 @@ module.exports = {
         var configQuery = "";
 
         var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailid+"'";
-        db.query(configQuery, function (err, result) {
+        db.query(queryCheck, function (err, result) {
             if (err) {
                 resp.message = err;
                 return res.status(200).send(resp);
@@ -2925,11 +2925,11 @@ module.exports = {
             
                     console.log(configQuery);
             
-                    db.query(configQuery, function (err1, result1) {
-                        if (err1) {
-                            return res.status(500).send(err1);
+                    db.query(configQuery, function (err, result) {
+                        if (err) {
+                            return res.status(500).send(err);
                         }
-                            resp.userid = result1.insertId;
+                            resp.userid = result.insertId;
                             return res.status(200).send(resp);
                     });
             
