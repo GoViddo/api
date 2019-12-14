@@ -2853,6 +2853,38 @@ module.exports = {
         });
     },
 
+    uploadProjectDetails: (req, res) => {
+
+        let projecttitle = req.body.projecttitle;
+        let selectedradio = req.body.selectedradio;
+        let project_short_description = req.body.project_short_description; 
+
+        let projectlogo_url = req.body.projectlogo_url; 
+        let project_banner_img_url = req.body.project_banner_img_url; 
+        let project_idea = req.body.project_idea; 
+        let videolink = req.body.videolink; 
+        let arrayForTeam = req.body.arrayForTeam; 
+        let documents_pdf_urls = req.body.documents_pdf_urls; 
+        let useridformypitch = req.body.useridformypitch; 
+        let select_category = req.body.select_category;
+        let crowdfund_total_target = req.body.crowdfund_total_target;
+        
+        var configQuery = "";
+        
+        configQuery = "INSERT INTO `crowdfund_project_details`(`crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`) VALUES ('"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '0','0','"+select_category+"')";
+        
+      
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+                return res.status(200).send(resp);
+        });
+    },
+
 
     getAllDataWithCatId: (req, res) => {
 
