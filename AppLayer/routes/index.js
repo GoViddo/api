@@ -2901,6 +2901,9 @@ module.exports = {
         let account_holder_type = req.body.account_holder_type; ; 
         
         var configQuery = "";
+        var resp = {};
+        resp.status = "success";
+            
 
         var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailid+"'";
         db.query(queryCheck, function (err, result) {
@@ -2920,9 +2923,7 @@ module.exports = {
                     configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('"+full_name+"', '"+emailid+"', '"+password+"', '"+dob+"', '"+account_holder_type+"')";
         
       
-                    var resp = {};
-                    resp.status = "success";
-            
+                    
                     console.log(configQuery);
             
                     db.query(configQuery, function (err, result) {
