@@ -2877,6 +2877,8 @@ module.exports = {
         var resp = {};
         resp.status = "success";
 
+        console.log(configQuery);
+
         db.query(configQuery, function (err, result) {
             if (err) {
                 return res.status(500).send(err);
