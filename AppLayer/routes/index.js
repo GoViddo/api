@@ -2870,6 +2870,9 @@ module.exports = {
         let crowdfund_total_target = req.body.crowdfund_total_target;
         
         var configQuery = "";
+
+        console.log(arrayForTeam);
+        console.log(documents_pdf_urls);
         
         configQuery = "INSERT INTO `crowdfund_project_details`(`crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`) VALUES ('"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '0','0','"+select_category+"')";
         
