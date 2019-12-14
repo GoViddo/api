@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, uploadProjectDetails, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -74,6 +74,7 @@ app.post('/singleProjectPage', singleProjectPage);
 app.post('/getAllDataWithCatId', getAllDataWithCatId);
 app.post('/uploadProjectDetails', uploadProjectDetails);
 app.post('/uploadMyPitchUserDetails', uploadMyPitchUserDetails);
+app.post('/getAllDataWithCatIdForSpecificUser', getAllDataWithCatIdForSpecificUser);
 
 app.post('/getGovTokenCount', getGovTokenCount);
 app.post('/forgotPassword', forgotPassword);
