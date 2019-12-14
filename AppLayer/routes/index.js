@@ -2902,7 +2902,6 @@ module.exports = {
         
         var configQuery = "";
         var resp = {};
-        resp.status = "success";
             
 
         var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailid+"'";
@@ -2917,6 +2916,7 @@ module.exports = {
                 console.log(result.length);
 
                 if (result.length) {
+                    resp.status = "failed";
                     resp.message = "User with this email already exists";
                     return res.status(200).send(resp);
                 } else {
@@ -2930,6 +2930,7 @@ module.exports = {
                         if (err) {
                             return res.status(500).send(err);
                         }
+                            resp.status = "success";
                             resp.userid = result.insertId;
                             return res.status(200).send(resp);
                     });
