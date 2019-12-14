@@ -3053,6 +3053,41 @@ module.exports = {
         
             return res.status(200).send(resp);
         });
+    },
+
+    loginCrowdfund: (req, res) => {
+
+        let emailId = req.body.email;
+        let password = req.body.password;
+        var configQuery = "";
+        
+        configQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"' and `crowdfund_user_password` = '"+password+"' and `crowdfund_user_account_status` = '1'";
+        
+      
+        var resp = {};
+        resp.status = "success";
+       
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            
+            for (var i = 0; i < result.length; i++) {
+                
+                resp.crowdfun_user_id = result[i].crowdfun_user_id;
+               
+                resp.crowdfund_user_email = result[i].crowdfund_user_email;
+                
+                resp.crowd_fund_user_full_name = result[i].crowd_fund_user_full_name;
+                resp.crowdfund_user_dob = result[i].crowdfund_user_dob;
+                resp.crowdfund_user_type = result[i].crowdfund_user_type;
+                
+            }
+
+            
+            return res.status(200).send(resp);
+        });
     }
 
 
