@@ -2891,6 +2891,36 @@ module.exports = {
     },
 
 
+    uploadMyPitchUserDetails: (req, res) => {
+
+        let full_name = req.body.full_name;
+        let emailid = req.body.emailid;
+        let password = req.body.password; 
+
+        let dob = req.body.dob; 
+        let account_holder_type = req.body.account_holder_type; ; 
+        
+        var configQuery = "";
+
+        
+        configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('"+full_name+"', '"+emailid+"', '"+password+"', '"+dob+"', '"+account_holder_type+"')";
+        
+      
+        var resp = {};
+        resp.status = "success";
+
+        console.log(configQuery);
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+                resp.userid = result.insertId;
+                return res.status(200).send(resp);
+        });
+    },
+
+
     getAllDataWithCatId: (req, res) => {
 
         let categoryId = req.body.catid;
