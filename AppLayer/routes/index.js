@@ -2942,6 +2942,55 @@ module.exports = {
 
             },
 
+
+            editCrowdFundProfile:(req, res) =>{
+              
+                    let emailId = req.body.userEmailId;
+                    let userId = req.body.userid;
+                    var configQuery = "";
+                    
+                    configQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"' and `crowdfun_user_id` = '"+userId+"' and `crowdfund_user_account_status` = '1'";            
+                    
+                  
+                    var resp = {};
+                    resp.status = "success";
+                    
+                    db.query(configQuery, function (err, result) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        }
+            
+                        let data = [];
+            
+                        for (var i = 0; i < result.length; i++) {
+            
+                            var details = {};
+            
+                            details.crowdfun_user_id = result[i].crowdfun_user_id;
+                           
+                            details.crowd_fund_user_full_name = result[i].crowd_fund_user_full_name;
+                            details.crowdfund_user_email = result[i].crowdfund_user_email;
+
+                            details.crowdfund_user_password = result[i].crowdfund_user_password;
+
+                            details.crowdfund_user_dob = result[i].crowdfund_user_dob;
+
+                            
+                            data.push(details);
+            
+                        }
+            
+                        resp.data = data;
+                    
+                        return res.status(200).send(resp);
+                    });
+                
+            },
+
+
+
+
+
             getAllDataWithCatIdForSpecificUser:(req, res) => {
 
                 let categoryId = req.body.catid;
