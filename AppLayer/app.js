@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, editCrowdFundProfile, updateCrowdFundProfile, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -68,6 +68,7 @@ app.use(function(req, res, next) {
 // routes for the app
 app.get('/config', getConfig);
 app.post('/editCrowdFundProfile', editCrowdFundProfile);
+app.post('/updatePitchDetails', updatePitchDetails);
 
 app.get('/crowdConfig', crowdConfig);
 app.post('/updateCrowdFundProfile', updateCrowdFundProfile);
