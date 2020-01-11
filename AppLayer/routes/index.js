@@ -2842,6 +2842,7 @@ module.exports = {
                 details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
                 details.crowdfund_project_approval = result[i].crowdfund_project_approval;
                 details.crowdfund_project_status = result[i].crowdfund_project_status;
+                details.project_given_by = result[i].project_given_by;
                
                 data.push(details);
 
@@ -2941,6 +2942,8 @@ module.exports = {
 
 
             },
+
+
 
             updateCrowdFundProfile:(req, res) =>{
                     let emailId = req.body.userEmailId;
