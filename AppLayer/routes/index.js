@@ -2988,6 +2988,7 @@ module.exports = {
 
                     var resp = {};
                     
+                    resp.eoswalletname = eoswalletname;
                     
                     
 
