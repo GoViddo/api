@@ -3016,6 +3016,7 @@ module.exports = {
                                         resp.query = configQuery;
                                         db.query(configQuery, function (err2, result2) {
                                             resp.status = "success";
+                                            resp.result = result2;
                                             resp.msg = "Profile updated successfully";
                                             return res.status(200).send(resp);
                                         });           
