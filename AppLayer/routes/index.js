@@ -2983,6 +2983,7 @@ module.exports = {
                     let userId = req.body.userid;
                     let fullName = req.body.fullname;
                     let dob = req.body.dob;
+                    let eoswalletname = req.body.eoswalletname;
                     var configQuery = "";
 
                     var resp = {};
@@ -3010,7 +3011,7 @@ module.exports = {
                                         return res.status(200).send(resp);
                                     }
                                     else{
-                                        configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                                        configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"', `eos_wallet_name` = '"+eoswalletname+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
                                         db.query(configQuery, function (err2, result2) {
                                             resp.status = "success";
                                             resp.msg = "Profile updated successfully";
