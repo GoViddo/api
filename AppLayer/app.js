@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, editCrowdFundProfile, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, editCrowdFundProfile, updateCrowdFundProfile, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -70,6 +70,7 @@ app.get('/config', getConfig);
 app.post('/editCrowdFundProfile', editCrowdFundProfile);
 
 app.get('/crowdConfig', crowdConfig);
+app.post('/updateCrowdFundProfile', updateCrowdFundProfile);
 app.get('/getIndexProjectList', getIndexProjectList);
 app.post('/singleProjectPage', singleProjectPage);
 app.post('/getAllDataWithCatId', getAllDataWithCatId);

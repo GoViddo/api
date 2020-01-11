@@ -2942,6 +2942,60 @@ module.exports = {
 
             },
 
+            updateCrowdFundProfile:(req, res) =>{
+                    let emailId = req.body.userEmailId;
+                    let userId = req.body.userid;
+                    let fullName = req.body.fullname;
+                    let dob = req.body.dob;
+                    var configQuery = "";
+
+                    var resp = {};
+                    
+                    
+                    
+
+                    var testQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfun_user_id` = '"+userId+"'";
+                    db.query(testQuery, function (err, result) {
+                        var oldEmail = result[0].crowdfund_user_email;
+
+
+                        if(oldEmail != emailId)
+                        {
+                            var checkNewEmail = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"'";
+                            db.query(checkNewEmail, function (err1, result1) {
+                                if (err1) {
+                                    return res.status(500).send(err1);
+                                }
+                                else{
+                                    if(result1.length > 0)
+                                    {
+                                        resp.status = "failed";
+                                        resp.msg = "This email id is already is in use, please try other email id";
+                                        return res.status(200).send(resp);
+                                    }
+                                    else{
+                                        configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                                        db.query(configQuery, function (err2, result2) {
+                                            resp.status = "success";
+                                            resp.msg = "Profile updated successfully";
+                                            return res.status(200).send(resp);
+                                        });           
+                                    }
+                                }
+                            });
+                        }
+                        else{
+                            configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                            db.query(configQuery, function (err2, result2) {
+                                resp.status = "success";
+                                resp.msg = "Profile updated successfully";
+                                return res.status(200).send(resp);
+                            });            
+                        }
+
+                    });
+                    
+            },
 
             editCrowdFundProfile:(req, res) =>{
               
