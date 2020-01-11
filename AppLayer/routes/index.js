@@ -3064,6 +3064,8 @@ module.exports = {
                             details.crowdfund_user_password = result[i].crowdfund_user_password;
 
                             details.crowdfund_user_dob = result[i].crowdfund_user_dob;
+                            details.eos_wallet_name = result[i].eos_wallet_name;
+                        
 
                             
                             data.push(details);
