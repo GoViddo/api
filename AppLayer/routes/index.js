@@ -3012,10 +3012,10 @@ module.exports = {
                                         return res.status(200).send(resp);
                                     }
                                     else{
-                                        configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"', `eos_wallet_name` = '"+eoswalletname+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                                        configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"',`eos_wallet_name`='"+eoswalletname+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                                        resp.query = configQuery;
                                         db.query(configQuery, function (err2, result2) {
                                             resp.status = "success";
-                                            resp.query = configQuery;
                                             resp.msg = "Profile updated successfully";
                                             return res.status(200).send(resp);
                                         });           
