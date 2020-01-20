@@ -1950,277 +1950,274 @@ module.exports = {
                                     console.log("Active Private Key =" + activePrivateKey);
                                     console.log("Active Public Key =" + activePublicKey);
                                     resolve(resp);
-
-                                }
-                            )
-                        })
-                    }).then(function (resp) {
-                        return new Promise(function (resolve, reject) {
-                            cmd.get(
-                                cleosCreateOwnerKeys,
-                                function (err, data, stderr) {
-
-                                    var arr = data.split(": ");
-                                    var Key = arr[1].split("Public key");
-                                    var ownerPrivateKey = Key[0];
-                                    var ownerPrivateKey = ownerPrivateKey.replace(/\n/g, '');
-                                    var ownerPublicKey = arr[2];
-                                    var ownerPublicKey = ownerPublicKey.replace(/\n/g, '');
-                                    //resp.createOwnerKeysMsg = "Owner Keys Created";
-
-                                    ownerKeys.ownerPrivateKey = ownerPrivateKey;
-                                    ownerKeys.ownerPublicKey = ownerPublicKey;
-
-                                    ownerKeysArray = [];
-                                    ownerKeysArray.push(ownerKeys);
-
-                                    resp.ownerKeys = ownerKeysArray;
-
-                                    console.log("Owner Private Key =" + ownerPrivateKey);
-                                    console.log("Owner Public Key =" + ownerPublicKey);
-
-                                    //mainnet account creation command
-                                    //let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.1 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
-
-
-                                    //testnet account creation command
-                                    let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
-
-
-                                    console.log('Command to be executed', createEOSWalletCommand);
-                                    //execute again cmd.get and run the createWalletCommand and return onwer and active keys with wallet name to the user
-
                                     cmd.get(
-                                        createEOSWalletCommand,
+                                        cleosCreateOwnerKeys,
                                         function (err, data, stderr) {
-                                            console.log(err);
-                                            if (err == null) {
-                                                resp.accountCreatedMsg = "Account Created Successfully";
-                                                console.log("Account Created Successfully" + data);
-
-                                                // send the user's details to the database
-                        let query = "INSERT INTO user_table (first_name, last_name, eosio_account_name, email_id, password) VALUES ('" + firstName + "', '" + lastName + "', '" + walletName + "', '" + email + "', '" + password + "')";
-                        db.query(query, function (err, result) {
-                            if (err) {
-                                resp.message = "Registration Failed due to database error";
-                                return res.status(200).send(err);
-                            }
-                            resp.message = "Registration successful";
-
-        var toEmail = email;
-        var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
-        var subject = "Activate Your GoViddo Account";
-
-        var username = firstName+" "+lastName;
-
-        var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
-            '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td align="center" valign="top">' +
-            '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td>' +
-            '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td align="left" valign="top">' +
-            '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-            '<tbody>' +
-            '<tr>'+
-             '<td align="center" valign="top" width="150">&nbsp;</td>' +
-            '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
-            '<td align="right" valign="top" width="150">' +
-            '<table border="0" cellpadding="0" cellspacing="0">' +
-            '<tbody>' +
-            '<tr>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td align="center" valign="top">' +
-            '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td>' +
-            '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td align="left" valign="top" width="100%">' +
-            '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
-            '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
-            '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
-            '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
-            '</td>'+
-            '</tr>'+
-            '</tbody>'+
-            '</table>'+
-            '</td>'+
-            '</tr>'+
-            '</tbody>'+
-            '</table>'+
-            '</td>' +
-            '</tr>' +
-            '<tr>' +
-            '<td align="center" valign="top">' +
-            '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
-            '<hr class="m_-6590730431353735716hr">' +
-            '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
-            '</td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '<center>' +
-            '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
-            '&nbsp;' +
-            '<table border="0" cellpadding="0" cellspacing="0">' +
-            '<tbody>' +
-            '<tr>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</td>' +
-            '</tr>' +
-            '</tbody>' +
-            '</table>' +
-            '</center><div class="yj6qo"></div><div class="adL">' +
-            '</div></div></div>';
-
-
-
-            const nodemailer = require("nodemailer");
-
-
-            var smtpTransport = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: 'contact@goviddo.com',
-                    pass: 'Contact@GoViddo'
-                }
-            },
-            {
-                // default message fields
-    
-                // sender info
-                from: 'GoViddo <contact@goviddo.com>',
-                headers: {
-                    'X-Laziness-level': 1000 // just an example header, no need to use this
-                }
-            });
-
-            var mailOptions = {
-                to: toEmail,
-                bcc: ccEmail,
-                subject: subject,
-                html: body,
-                attachments: [{
-                    filename: '10.png',
-                    path: 'https://goviddo.com/appimg/10.png',
-                    cid: 'unique@goviddo.igm' //same cid value as in the html img src
-                }]
-            }
-
-            
-            smtpTransport.sendMail(mailOptions, function (error, response) {
-                if (error) {
-                    // res.end("error");
-                } else {
-                    // res.end("sent");
-                }
-            });
-
-
-
-                            let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
-                            console.log(sendEOSTokensRegistration);
-                            cmd.get(
-                                sendEOSTokensRegistration,
-                                function (err, data, stderr) {
-
-                                    let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+activeKeys.activePrivateKey;
-                                    cmd.get(
-                                        importKeysCommand,
-                                        function (err, data, stderr) {
-
-                                        });
         
-
-                                    let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
-
-                                    console.log(chkingQuery)
-
-                                    db.query(chkingQuery, function (mern, mresn) {
-
-                                        var userId = mresn[0].user_id;
-
-                                        console.log(userId);
-
-                                        let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','For Registration of New User','hellogoviddo')";
-
-                                        db.query(queryInsertTransactions, function (mresr, mresultmm) {
-
+                                            var arr = data.split(": ");
+                                            var Key = arr[1].split("Public key");
+                                            var ownerPrivateKey = Key[0];
+                                            var ownerPrivateKey = ownerPrivateKey.replace(/\n/g, '');
+                                            var ownerPublicKey = arr[2];
+                                            var ownerPublicKey = ownerPublicKey.replace(/\n/g, '');
+                                            //resp.createOwnerKeysMsg = "Owner Keys Created";
+        
+                                            ownerKeys.ownerPrivateKey = ownerPrivateKey;
+                                            ownerKeys.ownerPublicKey = ownerPublicKey;
+        
+                                            ownerKeysArray = [];
+                                            ownerKeysArray.push(ownerKeys);
+        
+                                            resp.ownerKeys = ownerKeysArray;
+        
+                                            console.log("Owner Private Key =" + ownerPrivateKey);
+                                            console.log("Owner Public Key =" + ownerPublicKey);
+        
+                                            //mainnet account creation command
+                                            //let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.1 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
+        
+        
+                                            //testnet account creation command
+                                            let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
+        
+        
+                                            console.log('Command to be executed', createEOSWalletCommand);
+                                            //execute again cmd.get and run the createWalletCommand and return onwer and active keys with wallet name to the user
+        
+                                            cmd.get(
+                                                createEOSWalletCommand,
+                                                function (err, data, stderr) {
+                                                    console.log(err);
+                                                    if (err == null) {
+                                                        resp.accountCreatedMsg = "Account Created Successfully";
+                                                        console.log("Account Created Successfully" + data);
+        
+                                                        // send the user's details to the database
+                                let query = "INSERT INTO user_table (first_name, last_name, eosio_account_name, email_id, password) VALUES ('" + firstName + "', '" + lastName + "', '" + walletName + "', '" + email + "', '" + password + "')";
+                                db.query(query, function (err, result) {
+                                    if (err) {
+                                        resp.message = "Registration Failed due to database error";
+                                        return res.status(200).send(err);
+                                    }
+                                    resp.message = "Registration successful";
+        
+                var toEmail = email;
+                var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
+                var subject = "Activate Your GoViddo Account";
+        
+                var username = firstName+" "+lastName;
+        
+                var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
+                    '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td align="center" valign="top">' +
+                    '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td>' +
+                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td align="left" valign="top">' +
+                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                    '<tbody>' +
+                    '<tr>'+
+                     '<td align="center" valign="top" width="150">&nbsp;</td>' +
+                    '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
+                    '<td align="right" valign="top" width="150">' +
+                    '<table border="0" cellpadding="0" cellspacing="0">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td align="center" valign="top">' +
+                    '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td>' +
+                    '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td align="left" valign="top" width="100%">' +
+                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
+                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
+                    '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
+                    '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
+                    '</td>'+
+                    '</tr>'+
+                    '</tbody>'+
+                    '</table>'+
+                    '</td>'+
+                    '</tr>'+
+                    '</tbody>'+
+                    '</table>'+
+                    '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td align="center" valign="top">' +
+                    '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
+                    '<hr class="m_-6590730431353735716hr">' +
+                    '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '<center>' +
+                    '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
+                    '&nbsp;' +
+                    '<table border="0" cellpadding="0" cellspacing="0">' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</center><div class="yj6qo"></div><div class="adL">' +
+                    '</div></div></div>';
+        
+        
+        
+                    const nodemailer = require("nodemailer");
+        
+        
+                    var smtpTransport = nodemailer.createTransport({
+                        service: 'Gmail',
+                        auth: {
+                            user: 'contact@goviddo.com',
+                            pass: 'Contact@GoViddo'
+                        }
+                    },
+                    {
+                        // default message fields
+            
+                        // sender info
+                        from: 'GoViddo <contact@goviddo.com>',
+                        headers: {
+                            'X-Laziness-level': 1000 // just an example header, no need to use this
+                        }
+                    });
+        
+                    var mailOptions = {
+                        to: toEmail,
+                        bcc: ccEmail,
+                        subject: subject,
+                        html: body,
+                        attachments: [{
+                            filename: '10.png',
+                            path: 'https://goviddo.com/appimg/10.png',
+                            cid: 'unique@goviddo.igm' //same cid value as in the html img src
+                        }]
+                    }
+        
+                    
+                    smtpTransport.sendMail(mailOptions, function (error, response) {
+                        if (error) {
+                            // res.end("error");
+                        } else {
+                            // res.end("sent");
+                        }
+                    });
+        
+        
+        
+                                    let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
+                                    console.log(sendEOSTokensRegistration);
+                                    cmd.get(
+                                        sendEOSTokensRegistration,
+                                        function (err, data, stderr) {
+        
+                                            let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+activeKeys.activePrivateKey;
+                                            cmd.get(
+                                                importKeysCommand,
+                                                function (err, data, stderr) {
+        
+                                                });
+                
+        
+                                            let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
+        
+                                            console.log(chkingQuery)
+        
+                                            db.query(chkingQuery, function (mern, mresn) {
+        
+                                                var userId = mresn[0].user_id;
+        
+                                                console.log(userId);
+        
+                                                let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','For Registration of New User','hellogoviddo')";
+        
+                                                db.query(queryInsertTransactions, function (mresr, mresultmm) {
+        
+                                                                return res.status(200).send(resp);
+                                            
+                                                });
+        
+                                            });
+        
+                                        }
+                                    );
+        
+        
+        
+                                });
+        
+                                                    }
+                                                    else {
+                                                        resp.accountCreatedMsg = "Account creation failed "+createEOSWalletCommand;
+                                                        console.log("Account creation failed" + err);
                                                         return res.status(200).send(resp);
-                                    
-                                        });
-
-                                    });
-
-                                }
-                            );
-
-
-
-                        });
-
-                                            }
-                                            else {
-                                                resp.accountCreatedMsg = "Account creation failed";
-                                                console.log("Account creation failed" + err);
-                                                return res.status(200).send(resp);
-
-                                            }
+        
+                                                    }
+                                                }
+                                            );
+        
+        
+                                            resolve(resp);
+        
                                         }
                                     );
 
-
-                                    resolve(resp);
-
                                 }
-                            );
+                            )
                         })
                     });
                 }
