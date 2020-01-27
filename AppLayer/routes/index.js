@@ -2910,6 +2910,8 @@ module.exports = {
                 details.crowdfund_project_approval = result[i].crowdfund_project_approval;
                 details.crowdfund_project_status = result[i].crowdfund_project_status;
                 details.project_given_by = result[i].project_given_by;
+
+                details.select_main_cat = result[i].project_main_category_details_config;
                
                 data.push(details);
 
