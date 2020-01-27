@@ -2747,6 +2747,39 @@ module.exports = {
     },
 
 
+    crowdRelatedGeneres: (req, res) => {
+        
+        let selectedMainCategoryId = req.body.maincatid;
+
+        let configQuery = "SELECT * FROM `crowd_funding_category_list` WHERE `crowd_fund_cat_status` = '1' and `related_genere_id` = '"+selectedMainCategoryId+"'";
+
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.catid_related = result[i].crowd_fund_cat_id;
+                details.catname_related = result[i].crowd_funding_category_name;
+
+                data.push(details);
+
+            }
+
+            resp.data = data;
+        
+            return res.status(200).send(resp);
+        });
+    },
+
     crowdFundingMainCategoriesForMovies: (req, res) => {
         // An example to read config from a JSON file
         // const fs = require('fs');

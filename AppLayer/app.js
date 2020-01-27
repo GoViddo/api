@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, crowdRelatedGeneres, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -74,6 +74,7 @@ app.get('/crowdConfig', crowdConfig);
 app.get('/crowdFundingMainCategoriesForMovies', crowdFundingMainCategoriesForMovies);
 app.post('/updateCrowdFundProfile', updateCrowdFundProfile);
 app.get('/getIndexProjectList', getIndexProjectList);
+app.post('/crowdRelatedGeneres', crowdRelatedGeneres);
 app.post('/singleProjectPage', singleProjectPage);
 app.post('/getAllDataWithCatId', getAllDataWithCatId);
 app.post('/uploadProjectDetails', uploadProjectDetails);
