@@ -2717,7 +2717,7 @@ module.exports = {
         //     res.status(200).send(JSON.parse(data));
         // });
 
-        let configQuery = "SELECT * FROM `crowd_funding_category_list` WHERE `crowd_fund_cat_status` = '1'";
+        let configQuery = "SELECT * FROM `video_genere_table` WHERE `status` = '1'";
 
         var resp = {};
         resp.status = "success";
@@ -2733,8 +2733,8 @@ module.exports = {
 
                 var details = {};
 
-                details.catid = result[i].crowd_fund_cat_id;
-                details.catname = result[i].crowd_funding_category_name;
+                details.catid = result[i].video_genere_id;
+                details.catname = result[i].video_genere_name;
 
                 data.push(details);
 
