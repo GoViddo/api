@@ -77,7 +77,7 @@ module.exports = {
         console.log(walletName);
         let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-        let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+        let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
 
         var resp = {};
         cmd.get(
@@ -1119,7 +1119,7 @@ module.exports = {
 
                                 let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-                                let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+                                let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
 
                                 cmd.get(
                                     cleosWalletUnlockQuery,
@@ -1336,7 +1336,7 @@ module.exports = {
 
                                 let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-                                let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+                                let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
 
                                 cmd.get(
                                     cleosWalletUnlockQuery,
@@ -1456,7 +1456,7 @@ module.exports = {
 
                                                         let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-                                                        let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+                                                        let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
 
                                                         cmd.get(
                                                             cleosWalletUnlockQuery,
@@ -1866,7 +1866,7 @@ module.exports = {
 
                     let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-                    let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+                    let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
                     let cleosCreateActiveKeys = "cleos create key --to-console";
                     let cleosCreateOwnerKeys = "cleos create key --to-console";
 
@@ -2360,7 +2360,7 @@ module.exports = {
 
         let walletPassword = "PW5HqSmh2xHsgfZLQvS4oR225NryhsTx3Zc27ojKv3m1D8Wwtn7Ah";
 
-        let cleosWalletUnlockQuery = "cleos wallet unlock --password " + walletPassword;
+        let cleosWalletUnlockQuery = "cleos wallet unlock -n goviddowallet --password " + walletPassword;
         let cleosCreateActiveKeys = "cleos create key --to-console";
         let cleosCreateOwnerKeys = "cleos create key --to-console";
 
@@ -2746,6 +2746,43 @@ module.exports = {
         });
     },
 
+
+    crowdFundingMainCategoriesForMovies: (req, res) => {
+        // An example to read config from a JSON file
+        // const fs = require('fs');
+        // fs.readFile('mockData.json', (err, data) => {
+        //     if (err) res.status(500).send(err);
+        //     res.status(200).send(JSON.parse(data));
+        // });
+
+        let configQuery = "SELECT * FROM `video_genere_table` WHERE `status` = '1'";
+
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.maincatid = result[i].video_genere_id;
+                details.maincatname = result[i].video_genere_name;
+
+                data.push(details);
+
+            }
+
+            resp.data = data;
+        
+            return res.status(200).send(resp);
+        });
+    },
 
     getIndexProjectList: (req, res) => {
 
