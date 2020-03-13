@@ -2911,6 +2911,8 @@ module.exports = {
                 details.crowdfund_project_status = result[i].crowdfund_project_status;
                 details.project_given_by = result[i].project_given_by;
 
+                details.project_given_by_user_id = result[i].userid_given_by;
+
                 details.select_main_cat = result[i].project_main_category_details_config;
                
                 data.push(details);
