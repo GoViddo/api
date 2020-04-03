@@ -2780,6 +2780,42 @@ module.exports = {
         });
     },
 
+
+    subGenereList: (req, res) => {
+        
+        let genereIdForSubGenere = req.body.genereIdForSubGenere;
+
+        let genereIdForSubGenere = req.body.genereIdForSubGenere;
+        let configQuery = "SELECT * FROM `subgenere_table` WHERE `sub_genere_status` = '1' and `related_genere_id` = '"++"'";
+
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.sub_genre_id = result[i].sub_genre_id;
+                details.sub_genere_name = result[i].sub_genere_name;
+
+                data.push(details);
+
+            }
+
+            resp.data = data;
+        
+            return res.status(200).send(resp);
+        });
+    },
+
+
     crowdFundingMainCategoriesForMovies: (req, res) => {
         // An example to read config from a JSON file
         // const fs = require('fs');
