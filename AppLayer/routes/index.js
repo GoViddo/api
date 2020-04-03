@@ -2906,7 +2906,7 @@ module.exports = {
         var configQuery = "";
         if(projectId == 0)
         {
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN crowdfund_user_details as cud ON cud.crowdfun_user_id = cpd.`userid_given_by` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN crowdfund_user_details as cud ON cud.crowdfun_user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '67' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
         }
         else{
             configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN crowdfund_user_details as cud ON cud.crowdfun_user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '"+projectId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
