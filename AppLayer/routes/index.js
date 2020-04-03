@@ -2717,7 +2717,7 @@ module.exports = {
         //     res.status(200).send(JSON.parse(data));
         // });
 
-        let configQuery = "SELECT * FROM `video_genere_table` WHERE `status` = '1'";
+        let configQuery = "SELECT * FROM `video_genere_table` WHERE `crowd_fund_status` = '1'";
 
         var resp = {};
         resp.status = "success";
@@ -2942,7 +2942,7 @@ module.exports = {
         let crowdfund_total_target = req.body.crowdfund_total_target;
 
         let updatepitchid = req.body.updatepitchid;
-
+        
         var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
         var resp = {};
         resp.status = "success";
@@ -2976,13 +2976,19 @@ module.exports = {
 
 
         let newmaincatid = req.body.newmaincatid;
+
+        let crowdfund_total_raised_amount = req.body.crowdfund_total_raised_amount;
+        let roi = req.body.roi;
+        let taxbenifites = req.body.taxbenifites;
+
+
         
         var configQuery = "";
 
         console.log(req.body.arrayForTeam);
         console.log(req.body.documents_pdf_urls);
         
-        configQuery = "INSERT INTO `crowdfund_project_details`(`userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`) VALUES ('"+useridformypitch+"','"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '0','0','"+select_category+"', '"+newmaincatid+"')";
+        configQuery = "INSERT INTO `crowdfund_project_details`(`userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`, `roi`, `taxbenifites`) VALUES ('"+useridformypitch+"','"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '"+crowdfund_total_raised_amount+"','0','"+select_category+"', '"+newmaincatid+"', '"+roi+"', '"+taxbenifites+"')";
         
       
         var resp = {};
