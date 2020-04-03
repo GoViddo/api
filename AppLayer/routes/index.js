@@ -2949,6 +2949,8 @@ module.exports = {
                 details.tax_benefits = result[i].tax_benefits;
                 details.crowdfund_project_category_details_name = result[i].crowdfund_project_category_details_name;
                 details.video_genere_name = result[i].video_genere_name;
+                details.sub_genere_category_name = result[i].sub_genere_category_name;
+                details.sub_genere_id = result[i].sub_genere_id;
                 
 
                 details.project_given_by_user_id = result[i].crowdfund_user_email;
