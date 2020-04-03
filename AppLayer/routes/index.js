@@ -2783,10 +2783,9 @@ module.exports = {
 
     subGenereList: (req, res) => {
         
+        
         let genereIdForSubGenere = req.body.genereIdForSubGenere;
-
-        let genereIdForSubGenere = req.body.genereIdForSubGenere;
-        let configQuery = "SELECT * FROM `subgenere_table` WHERE `sub_genere_status` = '1' and `related_genere_id` = '"++"'";
+        let configQuery = "SELECT * FROM `subgenere_table` WHERE `sub_genere_status` = '1' and `related_genere_id` = '"+genereIdForSubGenere+"'";
 
         var resp = {};
         resp.status = "success";
