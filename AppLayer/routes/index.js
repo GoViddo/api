@@ -131,12 +131,12 @@ module.exports = {
 
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
+                host: 'smtp.gmail.com',
+                        port: 587,
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
                 },
-                authMethod:'NTLM',
-                        secure:false,
                         tls: {rejectUnauthorized: false},
                         debug:true
             });
@@ -1997,12 +1997,12 @@ module.exports = {
         
                     var smtpTransport = nodemailer.createTransport({
                         service: 'Gmail',
+                        host: 'smtp.gmail.com',
+                        port: 587,
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
                         },
-                        authMethod:'NTLM',
-                        secure:false,
                         tls: {rejectUnauthorized: false},
                         debug:true
                     },
@@ -2348,12 +2348,12 @@ module.exports = {
         
                     var smtpTransport = nodemailer.createTransport({
                         service: 'Gmail',
+                        host: 'mail.mysmtpserver.com',
+                        port: 587,
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
                         },
-                        authMethod:'NTLM',
-                        secure:false,
                         tls: {rejectUnauthorized: false},
                         debug:true
                     },
@@ -2894,12 +2894,12 @@ module.exports = {
 
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
                 },
-                authMethod:'NTLM',
-                        secure:false,
                         tls: {rejectUnauthorized: false},
                         debug:true
             },
