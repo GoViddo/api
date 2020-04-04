@@ -2029,6 +2029,7 @@ module.exports = {
                         if (error) {
                             // res.end("error");
                             resp.disp = "Mail Sent Failed...";
+                            resp.erm = error;
                             return res.status(200).send(resp);
 
                         } else {
