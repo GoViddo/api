@@ -2028,8 +2028,15 @@ module.exports = {
                     smtpTransport.sendMail(mailOptions, function (error, response) {
                         if (error) {
                             // res.end("error");
+                            resp.disp = "Mail Sent Failed...";
+                            return res.status(200).send(resp);
+
                         } else {
                             // res.end("sent");
+
+                            resp.disp = "Mail Sent Successfully...";
+                            return res.status(200).send(resp);
+
                         }
                     });
 
@@ -2037,7 +2044,7 @@ module.exports = {
 
 
 
-                            return res.status(200).send(resp);
+                            
                         }
                     });
 
