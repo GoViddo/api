@@ -3188,6 +3188,7 @@ module.exports = {
                 details.video_genere_name = result[i].crowdfund_project_category_details_name;
                 details.sub_genere_category_name = result[i].sub_genere_category_name;
                 details.sub_genere_id = result[i].sub_genere_id;
+                details.other_benefits = result[i].other_benefits;
                 
 
                 details.project_given_by_user_id = result[i].crowdfund_user_email;
@@ -3260,6 +3261,7 @@ module.exports = {
         let crowdfund_total_raised_amount = req.body.crowdfund_total_raised_amount;
         let roi = req.body.roi;
         let taxbenifites = req.body.taxbenifites;
+        let other_benefits = req.body.other_benefits;
 
 
         let selectedSubGenere = req.body.selectedSubGenere;
@@ -3272,7 +3274,7 @@ module.exports = {
         console.log(req.body.arrayForTeam);
         console.log(req.body.documents_pdf_urls);
         
-        configQuery = "INSERT INTO `crowdfund_project_details`(`userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`, `roi`, `tax_benefits`, `crowdfund_project_category_details_name`, `sub_genere_category_name`, `sub_genere_id`) VALUES ('"+useridformypitch+"','"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '"+crowdfund_total_raised_amount+"','0','"+select_category+"', '"+newmaincatid+"', '"+roi+"', '"+taxbenifites+"', '"+crowdfund_project_category_details_name+"', '"+selectedSubGenere+"', '"+selectedSubGenereId+"')";
+        configQuery = "INSERT INTO `crowdfund_project_details`(`userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`, `roi`, `tax_benefits`, `crowdfund_project_category_details_name`, `sub_genere_category_name`, `sub_genere_id`, `other_benefits`) VALUES ('"+useridformypitch+"','"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '"+crowdfund_total_raised_amount+"','0','"+select_category+"', '"+newmaincatid+"', '"+roi+"', '"+taxbenifites+"', '"+crowdfund_project_category_details_name+"', '"+selectedSubGenere+"', '"+selectedSubGenereId+"', '"+other_benefits+"')";
         
       
         var resp = {};
