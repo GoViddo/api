@@ -134,7 +134,11 @@ module.exports = {
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
-                }
+                },
+                authMethod:'NTLM',
+                        secure:false,
+                        tls: {rejectUnauthorized: false},
+                        debug:true
             });
 
             var mailOptions = {
@@ -1996,7 +2000,11 @@ module.exports = {
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
-                        }
+                        },
+                        authMethod:'NTLM',
+                        secure:false,
+                        tls: {rejectUnauthorized: false},
+                        debug:true
                     },
                     {
                         // default message fields
@@ -2343,7 +2351,11 @@ module.exports = {
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
-                        }
+                        },
+                        authMethod:'NTLM',
+                        secure:false,
+                        tls: {rejectUnauthorized: false},
+                        debug:true
                     },
                     {
                         // default message fields
@@ -2885,7 +2897,11 @@ module.exports = {
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
-                }
+                },
+                authMethod:'NTLM',
+                        secure:false,
+                        tls: {rejectUnauthorized: false},
+                        debug:true
             },
             {
                 // default message fields
