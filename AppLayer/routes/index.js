@@ -2018,8 +2018,8 @@ module.exports = {
                         subject: subject,
                         html: body,
                         attachments: [{
-                            filename: '10.png',
-                            path: 'https://goviddo.com/appimg/10.png',
+                            filename: 'gt1.png',
+                            path: 'https://goviddo.com/logo/gt1.png',
                             cid: 'unique@goviddo.igm' //same cid value as in the html img src
                         }]
                     }
@@ -2375,8 +2375,8 @@ module.exports = {
                         subject: subject,
                         html: body,
                         attachments: [{
-                            filename: '10.png',
-                            path: 'https://goviddo.com/appimg/10.png',
+                            filename: 'gt1.png',
+                            path: 'https://goviddo.com/logo/gt1.png',
                             cid: 'unique@goviddo.igm' //same cid value as in the html img src
                         }]
                     }
@@ -2919,8 +2919,8 @@ module.exports = {
                 subject: subject,
                 html: body,
                 attachments: [{
-                    filename: '10.png',
-                    path: 'https://goviddo.com/appimg/10.png',
+                    filename: 'gt1.png',
+                    path: 'https://goviddo.com/logo/gt1.png',
                     cid: 'unique@goviddo.igm' //same cid value as in the html img src
                 }]
             }
