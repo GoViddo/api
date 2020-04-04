@@ -1824,6 +1824,57 @@ module.exports = {
     },
 
 
+    registerForCrowdFunding: (req, res) => {
+
+        let email = req.body.email;
+        let password = req.body.password;
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+        let contactNumber = req.body.contactNumber;
+        let countryName = req.body.countryName;
+
+
+        if (!email || !password || !firstName || !lastName || !contactNumber || !countryName) {
+            resp.message = "Missing first name, last name, email, Country name, Contact Number or password";
+            return res.status(400).send(resp);
+        }
+        else{
+            let userQuery = "SELECT * FROM user_table WHERE email_id = '" + email + "';";
+
+        db.query(userQuery, function (err, result) {
+            var resp = {};
+            if (err) {
+                resp.message = err;
+                return res.status(200).send(resp);
+            }
+            else {
+
+
+                console.log(result.length);
+
+                if (result.length) {
+                    resp.message = "User with this email already exists";
+                    return res.status(200).send(resp);
+                } else {
+
+                    var insertQuery = "INSERT INTO `user_table`(`first_name`, `last_name`, `email_id`, `password`, `phone_no`, `country`) VALUES ('"+firstName+"', '"+lastName+"', '"+email+"', '"+password+"', '"+contactNumber+"', '"+countryName+"')";
+                    db.query(insertQuery, function (err, result) {
+                        if (err) {
+                            resp.message = "Registration Failed due to database error";
+                            return res.status(200).send(err);
+                        }
+                        else{
+                            resp.message = "Registration successful";
+                            return res.status(200).send(resp);
+                        }
+                    });
+
+                }
+            }
+        });
+        }
+
+    },
 
 
     register: (req, res) => {
@@ -2900,6 +2951,8 @@ module.exports = {
     },
 
 
+
+
     singleProjectPage: (req, res) => {
 
         let projectId = req.body.proid;
@@ -3333,7 +3386,7 @@ module.exports = {
         let password = req.body.password;
         var configQuery = "";
         
-        configQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"' and `crowdfund_user_password` = '"+password+"' and `crowdfund_user_account_status` = '1'";
+        configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+emailId+"' and `password` = '"+password+"' and `status` = '1'";
         
       
         var resp = {};
@@ -3349,13 +3402,16 @@ module.exports = {
                 resp.status = "success";
                 for (var i = 0; i < result.length; i++) {
                 
-                    resp.crowdfun_user_id = result[i].crowdfun_user_id;
+                    resp.crowdfun_user_id = result[i].user_id;
                    
-                    resp.crowdfund_user_email = result[i].crowdfund_user_email;
+                    resp.crowdfund_user_email = result[i].email_id;
                     
-                    resp.crowd_fund_user_full_name = result[i].crowd_fund_user_full_name;
-                    resp.crowdfund_user_dob = result[i].crowdfund_user_dob;
-                    resp.crowdfund_user_type = result[i].crowdfund_user_type;
+                    resp.crowd_fund_user_full_name = result[i].first_name+" "+result[i].last_name;
+                    resp.crowdfund_user_dob = result[i].birth_date;
+                    resp.crowdfund_user_type = 1;
+                    resp.phone_no = result[i].phone_no;
+                    resp.country = result[i].country;
+
                     
                 }
             }
