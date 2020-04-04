@@ -1836,6 +1836,7 @@ module.exports = {
 
         if (!email || !password || !firstName || !lastName || !contactNumber || !countryName) {
             resp.message = "Missing first name, last name, email, Country name, Contact Number or password";
+            resp.status = "failed";
             return res.status(400).send(resp);
         }
         else{
@@ -1845,6 +1846,7 @@ module.exports = {
             var resp = {};
             if (err) {
                 resp.message = err;
+                resp.status = "failed";
                 return res.status(200).send(resp);
             }
             else {
@@ -1854,6 +1856,7 @@ module.exports = {
 
                 if (result.length) {
                     resp.message = "User with this email already exists";
+                    resp.status = "failed";
                     return res.status(200).send(resp);
                 } else {
 
@@ -1861,10 +1864,12 @@ module.exports = {
                     db.query(insertQuery, function (err, result) {
                         if (err) {
                             resp.message = "Registration Failed due to database error";
+                            resp.status = "failed";
                             return res.status(200).send(err);
                         }
                         else{
                             resp.message = "Registration successful";
+                            resp.status = "success";
                             return res.status(200).send(resp);
                         }
                     });
