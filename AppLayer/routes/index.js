@@ -3407,7 +3407,7 @@ module.exports = {
                     let userId = req.body.userid;
                     var configQuery = "";
                     
-                    configQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"' and `crowdfun_user_id` = '"+userId+"' and `crowdfund_user_account_status` = '1'";            
+                    configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+emailId+"' and `user_id` = '"+userId+"' and `status` = '1'";            
                     
                   
                     var resp = {};
@@ -3424,15 +3424,19 @@ module.exports = {
             
                             var details = {};
             
-                            details.crowdfun_user_id = result[i].crowdfun_user_id;
+                            details.crowdfun_user_id = result[i].user_id;
                            
-                            details.crowd_fund_user_full_name = result[i].crowd_fund_user_full_name;
-                            details.crowdfund_user_email = result[i].crowdfund_user_email;
+                            details.crowd_fund_user_full_name = result[i].first_name+" "+result[i].last_name;
+                            details.first_name = result[i].first_name;
+                            details.last_name = result[i].last_name;
+                            details.crowdfund_user_email = result[i].email_id;
 
-                            details.crowdfund_user_password = result[i].crowdfund_user_password;
+                            details.crowdfund_user_password = result[i].password;
+                            details.phone_no = result[i].phone_no;
+                            details.country = result[i].country;
 
-                            details.crowdfund_user_dob = result[i].crowdfund_user_dob;
-                            details.eos_wallet_name = result[i].eos_wallet_name;
+                            details.crowdfund_user_dob = result[i].birth_date;
+                            details.eos_wallet_name = result[i].eosio_account_name;
                         
 
                             
