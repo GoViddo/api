@@ -131,8 +131,6 @@ module.exports = {
 
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
-                host: 'smtp.gmail.com',
-                        port: 465,
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
@@ -1997,8 +1995,6 @@ module.exports = {
         
                     var smtpTransport = nodemailer.createTransport({
                         service: 'Gmail',
-                        host: 'smtp.gmail.com',
-                        port: 465,
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
@@ -2348,8 +2344,6 @@ module.exports = {
         
                     var smtpTransport = nodemailer.createTransport({
                         service: 'Gmail',
-                        host: 'mail.mysmtpserver.com',
-                        port: 465,
                         auth: {
                             user: 'contact@goviddo.com',
                             pass: 'Contact@GoViddo'
@@ -2894,8 +2888,6 @@ module.exports = {
 
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
-                host: 'smtp.gmail.com',
-                port: 465,
                 auth: {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
