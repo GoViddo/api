@@ -3191,7 +3191,7 @@ module.exports = {
                 details.other_benefits = result[i].other_benefits;
                 
 
-                details.project_given_by_user_id = result[i].crowdfund_user_email;
+                details.project_given_by_user_id = result[i].email_id;
 
                 details.select_main_cat = result[i].project_main_category_details_config;
                
@@ -3313,7 +3313,7 @@ module.exports = {
             else {
 
 
-                console.log(result.length);
+                console.log(result.length);full_name
 
                 if (result.length) {
                     resp.status = "failed";
