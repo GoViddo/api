@@ -42,6 +42,13 @@ function handleDisconnect() {
     db.on('error', function (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleDisconnect();
+            
+            cmd.get(
+                "pm2 restart app",
+                function (err1, data1, stderr1) {
+                }
+            );
+
         } else {
             console.log('Error connecting DB:', err);
             throw err;
