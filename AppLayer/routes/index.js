@@ -3143,10 +3143,10 @@ module.exports = {
         var configQuery = "";
         if(projectId == 0)
         {
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN crowdfund_user_details as cud ON cud.crowdfun_user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '67' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '67' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
         }
         else{
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN crowdfund_user_details as cud ON cud.crowdfun_user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '"+projectId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '"+projectId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
         }
       
         var resp = {};
@@ -3358,14 +3358,14 @@ module.exports = {
                     
                     
 
-                    var testQuery = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfun_user_id` = '"+userId+"'";
+                    var testQuery = "SELECT * FROM `user_table` WHERE `user_id` = '"+userId+"'";
                     db.query(testQuery, function (err, result) {
                         var oldEmail = result[0].crowdfund_user_email;
 
 
                         if(oldEmail != emailId)
                         {
-                            var checkNewEmail = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailId+"'";
+                            var checkNewEmail = "SELECT * FROM `user_table` WHERE `crowdfund_user_email` = '"+emailId+"'";
                             db.query(checkNewEmail, function (err1, result1) {
                                 if (err1) {
                                     return res.status(500).send(err1);
@@ -3378,7 +3378,7 @@ module.exports = {
                                         return res.status(200).send(resp);
                                     }
                                     else{
-                                        configQuery = "UPDATE `crowdfund_user_details` SET `eos_wallet_name`='"+eoswalletnamesend+"', `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                                        configQuery = "UPDATE `user_table` SET `eos_wallet_name`='"+eoswalletnamesend+"', `first_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
                                         resp.query = configQuery;
                                         db.query(configQuery, function (err2, result2) {
                                             resp.status = "success";
@@ -3391,7 +3391,7 @@ module.exports = {
                             });
                         }
                         else{
-                            configQuery = "UPDATE `crowdfund_user_details` SET `crowd_fund_user_full_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
+                            configQuery = "UPDATE `user_table` SET `first_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `user_id` = '"+userId+"'"; 
                             db.query(configQuery, function (err2, result2) {
                                 resp.status = "success";
                                 resp.msg = "Profile updated successfully";
