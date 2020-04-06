@@ -3221,9 +3221,19 @@ module.exports = {
         let select_category = req.body.select_category;
         let crowdfund_total_target = req.body.crowdfund_total_target;
 
+
+
+        let taxbenifites = req.body.taxbenifites;
+        let roi = req.body.roi;
+        let other_benefits = req.body.other_benefits;
+        let crowdfund_total_raised_amount = req.body.crowdfund_total_raised_amount;
+        let select_category_text = req.body.select_category_text;
+        let projectgenere = req.body.projectgenere;
+
+
         let updatepitchid = req.body.updatepitchid;
         
-        var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
+        var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_project_category_details_name` = '"+projectgenere+"', `other_benefits` = '"+other_benefits+"', `tax_benefits` = '"+taxbenifites+"', `roi` = '"+roi+"', `crowdfund_total_raised` = '"+crowdfund_total_raised_amount+"', `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
         var resp = {};
         resp.status = "success";
         resp.query = queryUpdate;
