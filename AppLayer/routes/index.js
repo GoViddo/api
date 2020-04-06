@@ -3058,7 +3058,7 @@ module.exports = {
         //     res.status(200).send(JSON.parse(data));
         // });
 
-        let configQuery = "SELECT * FROM `video_genere_table` WHERE `status` = '1'";
+        let configQuery = "SELECT * FROM `video_genere_table` WHERE `crowd_fund_status` = '1'";
 
         var resp = {};
         resp.status = "success";
