@@ -3189,6 +3189,7 @@ module.exports = {
                 details.sub_genere_category_name = result[i].sub_genere_category_name;
                 details.sub_genere_id = result[i].sub_genere_id;
                 details.other_benefits = result[i].other_benefits;
+                details.pro_usp = result[i].pro_usp;
                 
 
                 details.project_given_by_user_id = result[i].email_id;
@@ -3230,10 +3231,12 @@ module.exports = {
         let select_category_text = req.body.select_category_text;
         let projectgenere = req.body.projectgenere;
 
+        let usp_pro = req.body.usp_pro;
+
 
         let updatepitchid = req.body.updatepitchid;
         
-        var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_project_category_details_name` = '"+projectgenere+"', `other_benefits` = '"+other_benefits+"', `tax_benefits` = '"+taxbenifites+"', `roi` = '"+roi+"', `crowdfund_total_raised` = '"+crowdfund_total_raised_amount+"', `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
+        var queryUpdate = "UPDATE `crowdfund_project_details` SET `pro_usp` = '"+usp_pro+"', `crowdfund_project_category_details_name` = '"+projectgenere+"', `other_benefits` = '"+other_benefits+"', `tax_benefits` = '"+taxbenifites+"', `roi` = '"+roi+"', `crowdfund_total_raised` = '"+crowdfund_total_raised_amount+"', `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
         var resp = {};
         resp.status = "success";
         resp.query = queryUpdate;
