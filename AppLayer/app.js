@@ -91,7 +91,7 @@ app.post('/uploadProjectDetails', uploadProjectDetails);
 app.post('/uploadMyPitchUserDetails', uploadMyPitchUserDetails);
 app.post('/getAllDataWithCatIdForSpecificUser', getAllDataWithCatIdForSpecificUser);
 app.post('/loginCrowdfund', loginCrowdfund);
-app.post('/testapi', testapi);
+app.get('/testapi', testapi);
 
 
 
