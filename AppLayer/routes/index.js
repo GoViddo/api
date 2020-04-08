@@ -3190,6 +3190,7 @@ module.exports = {
                 details.sub_genere_id = result[i].sub_genere_id;
                 details.other_benefits = result[i].other_benefits;
                 details.pro_usp = result[i].pro_usp;
+                details.crowdfund_cast_details_array = result[i].crowdfund_cast_details_array;
                 
 
                 details.project_given_by_user_id = result[i].email_id;
