@@ -3593,6 +3593,22 @@ module.exports = {
         });
     },
 
+
+    testapi: (req, res) => {
+            let text = "Demo";
+            let test = "Demo1";
+            var resp = {};
+            resp.status = "success";
+
+            resp.text = text;
+            resp.test = test;
+            
+            return res.status(200).send(resp);
+
+
+
+    },
+
     loginCrowdfund: (req, res) => {
 
         let emailId = req.body.email;
