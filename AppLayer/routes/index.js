@@ -3316,10 +3316,13 @@ module.exports = {
     restartApp()
     {
         let command = "pm2 restart app";
-
+        console.log(command);
         cmd.get(
             command,
             function (err, data, stderr) {
+                console.log(err);
+                console.log(data);
+                console.log(stderr);
                 let resp = {};
                 resp.status = "success";
                 return res.status(200).send(resp);
