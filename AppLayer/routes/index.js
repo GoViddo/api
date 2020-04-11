@@ -3315,7 +3315,7 @@ module.exports = {
 
     restartApp()
     {
-        let command = "pm2 delete app";
+        let command = "pm2 restart app";
         console.log(command);
         cmd.get(
             command,
