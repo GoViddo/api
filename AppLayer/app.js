@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, testapi, crowdRelatedGeneres, registerForCrowdFunding, subGenereList, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, restartApp, testapi, crowdRelatedGeneres, registerForCrowdFunding, subGenereList, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -43,11 +43,6 @@ function handleDisconnect() {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleDisconnect();
             
-            cmd.get(
-                "pm2 restart app",
-                function (err1, data1, stderr1) {
-                }
-            );
 
         } else {
             console.log('Error connecting DB:', err);
@@ -92,6 +87,8 @@ app.post('/uploadMyPitchUserDetails', uploadMyPitchUserDetails);
 app.post('/getAllDataWithCatIdForSpecificUser', getAllDataWithCatIdForSpecificUser);
 app.post('/loginCrowdfund', loginCrowdfund);
 app.get('/testapi', testapi);
+
+app.get('/restartApp', restartApp);
 
 
 
