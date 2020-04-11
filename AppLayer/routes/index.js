@@ -3313,6 +3313,21 @@ module.exports = {
         });
     },
 
+    restartApp()
+    {
+        let command = "pm2 restart app";
+
+        cmd.get(
+            command,
+            function (err, data, stderr) {
+                let resp = {};
+                resp.status = "success";
+                return res.status(200).send(resp);
+            }
+        );
+
+    },
+
 
     uploadMyPitchUserDetails: (req, res) => {
 
