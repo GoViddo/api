@@ -12,7 +12,7 @@ const nodemailer = require("nodemailer");
 // List globals
 global.cmd = cmd
 
-const { login, createEosMainNetWallet, restartApp, testapi, crowdRelatedGeneres, registerForCrowdFunding, subGenereList, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
+const { login, createEosMainNetWallet, testapi, crowdRelatedGeneres, registerForCrowdFunding, subGenereList, crowdFundingMainCategoriesForMovies, editCrowdFundProfile, updateCrowdFundProfile, updatePitchDetails, loginCrowdfund, uploadProjectDetails, getAllDataWithCatIdForSpecificUser, uploadMyPitchUserDetails, crowdConfig, getIndexProjectList, getAllDataWithCatId, singleProjectPage, sendEmail,  getGovTokenCount, getSeriesDetails, forgotPassword, getSeasonDetails, register, shareUrl, updateApp, watchLaterList, transactionDetails, subscriptChannel, sahreUrlTokens, addComment, addToWatchList, getUserProfilePics, getUserHistory, getCommentList, getChannelList, getUserInfoForAccount, getVideoRelatedDetails, likeUnlikeSstore, getConfig , checkWalletName, saveViewInformation, getSubscriptionData, getVideoGenereId, bannerImages, getVideoData,getSubscriptionList, getSliderImageData, getPreviewData, generateVideoOtp} = require('./routes/index');
 
 const port = config.port;
 
@@ -88,7 +88,6 @@ app.post('/getAllDataWithCatIdForSpecificUser', getAllDataWithCatIdForSpecificUs
 app.post('/loginCrowdfund', loginCrowdfund);
 app.get('/testapi', testapi);
 
-app.get('/restartApp', restartApp);
 
 
 
