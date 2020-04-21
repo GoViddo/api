@@ -33,20 +33,20 @@ function handleDisconnect() {
     db.connect(function (err) {
         if (err) {
             console.log('Error connecting DB:', err);
-            setTimeout(handleDisconnect, 2000);
+            //setTimeout(handleDisconnect, 2000);
         }
         global.db = db;
         console.log('Re-connected to database');
     });
 
-    db.on('error', function (err) {
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            handleDisconnect();
-        } else {
-            console.log('Error connecting DB:', err);
-            throw err;
-        }
-    });
+    // db.on('error', function (err) {
+    //     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+    //         handleDisconnect();
+    //     } else {
+    //         console.log('Error connecting DB:', err);
+    //         throw err;
+    //     }
+    // });
 }
 
 handleDisconnect();
