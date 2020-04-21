@@ -17,6 +17,7 @@ const { login, createEosMainNetWallet, testapi, crowdRelatedGeneres, registerFor
 const port = config.port;
 
 const db_config = {
+    connectionLimit : 10,
     host: config.host,
     user: config.user,
     password: config.password,
@@ -28,17 +29,8 @@ var db;
 var smtpTransport;
 
 function handleDisconnect() {
-    db = mysql.createConnection(db_config);
-
-    db.connect(function (err) {
-        if (err) {
-            console.log('Error connecting DB:', err);
-            setTimeout(handleDisconnect, 2000);
-        }
-        global.db = db;
-        console.log('Re-connected to database');
-    });
-
+    db = mysql.createPool(db_config);
+      
     db.on('error', function (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleDisconnect();
