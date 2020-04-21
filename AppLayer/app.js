@@ -29,8 +29,18 @@ var db;
 var smtpTransport;
 
 function handleDisconnect() {
-    db = mysql.createPool(db_config);
+    global.db = mysql.createPool(db_config);
       
+
+    // db.connect(function (err) {
+    //     if (err) {
+    //         console.log('Error connecting DB:', err);
+    //         setTimeout(handleDisconnect, 2000);
+    //     }
+    //     global.db = db;
+    //     console.log('Re-connected to database');
+    // });
+
     db.on('error', function (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleDisconnect();
