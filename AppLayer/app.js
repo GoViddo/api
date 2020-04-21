@@ -41,14 +41,14 @@ function handleDisconnect() {
     //     console.log('Re-connected to database');
     // });
 
-    db.on('error', function (err) {
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            handleDisconnect();
-        } else {
-            console.log('Error connecting DB:', err);
-            throw err;
-        }
-    });
+    // db.on('error', function (err) {
+    //     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+    //         handleDisconnect();
+    //     } else {
+    //         console.log('Error connecting DB:', err);
+    //         throw err;
+    //     }
+    // });
 }
 
 handleDisconnect();
