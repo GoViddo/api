@@ -3160,9 +3160,11 @@ module.exports = {
 
             let data = [];
 
+
             for (var i = 0; i < result.length; i++) {
 
                 var details = {};
+
 
                 details.crowdfund_project_id = result[i].crowdfund_project_id;
                
@@ -3193,6 +3195,12 @@ module.exports = {
                 details.pro_usp = result[i].pro_usp;
                 details.crowdfund_cast_details_array = result[i].crowdfund_cast_details_array;
                 
+                
+                details.news_description = result[i].news_description;
+                details.news_image = result[i].news_image;
+                details.news_redirection = result[i].news_redirection;
+
+
 
                 details.project_given_by_user_id = result[i].email_id;
 
