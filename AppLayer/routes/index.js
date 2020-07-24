@@ -1875,7 +1875,11 @@ module.exports = {
                                 resp.message = "Registration successful";
                                 resp.status = "success";
 
+                                let selectSliderImagesQuery = "SELECT * FROM user_table WHERE email_id = '" + email + "';";
 
+                                db.query(selectSliderImagesQuery, function (err1, result1) {
+                                    resp.userid = result1[0].user_id;
+                                });
 
                                 var toEmail = email;
                                 var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
