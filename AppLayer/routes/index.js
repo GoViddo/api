@@ -135,8 +135,8 @@ module.exports = {
                     user: 'contact@goviddo.com',
                     pass: 'Contact@GoViddo'
                 },
-                        tls: {rejectUnauthorized: false},
-                        debug:true
+                tls: { rejectUnauthorized: false },
+                debug: true
             });
 
             var mailOptions = {
@@ -1350,7 +1350,7 @@ module.exports = {
                                             sendEOSTokensRegistration,
                                             function (err, data, stderr) {
 
-                                                
+
                                                 let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','10 shares','hellogoviddo')";
 
                                                 db.query(queryInsertTransactions, function (mresr, mresultmm) {
@@ -1834,6 +1834,8 @@ module.exports = {
         let lastName = req.body.lastName;
         let contactNumber = req.body.contactNumber;
         let countryName = req.body.countryName;
+        let submail = req.body.submail;
+
 
 
         if (!email || !password || !firstName || !lastName || !contactNumber || !countryName) {
@@ -1841,217 +1843,217 @@ module.exports = {
             resp.status = "failed";
             return res.status(400).send(resp);
         }
-        else{
+        else {
             let userQuery = "SELECT * FROM user_table WHERE email_id = '" + email + "';";
 
-        db.query(userQuery, function (err, result) {
-            var resp = {};
-            if (err) {
-                resp.message = err;
-                resp.status = "failed";
-                return res.status(200).send(resp);
-            }
-            else {
-
-
-                console.log(result.length);
-
-                if (result.length) {
-                    resp.message = "User with this email already exists";
+            db.query(userQuery, function (err, result) {
+                var resp = {};
+                if (err) {
+                    resp.message = err;
                     resp.status = "failed";
                     return res.status(200).send(resp);
-                } else {
-
-                    var insertQuery = "INSERT INTO `user_table`(`first_name`, `last_name`, `email_id`, `password`, `phone_no`, `country`) VALUES ('"+firstName+"', '"+lastName+"', '"+email+"', '"+password+"', '"+contactNumber+"', '"+countryName+"')";
-                    db.query(insertQuery, function (err, result) {
-                        if (err) {
-                            resp.message = "Registration Failed due to database error";
-                            resp.status = "failed";
-                            return res.status(200).send(err);
-                        }
-                        else{
-                            resp.message = "Registration successful";
-                            resp.status = "success";
-
-
-
-                            var toEmail = email;
-                var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
-                var subject = "Activate Your GoViddo Account";
-        
-                var username = firstName+" "+lastName;
-        
-                var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
-                    '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td>' +
-                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="left" valign="top">' +
-                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>'+
-                     '<td align="center" valign="top" width="150">&nbsp;</td>' +
-                    '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
-                    '<td align="right" valign="top" width="150">' +
-                    '<table border="0" cellpadding="0" cellspacing="0">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td>' +
-                    '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="left" valign="top" width="100%">' +
-                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
-                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
-                    '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
-                    '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
-                    '</td>'+
-                    '</tr>'+
-                    '</tbody>'+
-                    '</table>'+
-                    '</td>'+
-                    '</tr>'+
-                    '</tbody>'+
-                    '</table>'+
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
-                    '<hr class="m_-6590730431353735716hr">' +
-                    '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '<center>' +
-                    '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
-                    '&nbsp;' +
-                    '<table border="0" cellpadding="0" cellspacing="0">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</center><div class="yj6qo"></div><div class="adL">' +
-                    '</div></div></div>';
-        
-        
-        
-                    const nodemailer = require("nodemailer");
-        
-        
-                    var smtpTransport = nodemailer.createTransport({
-                        service: 'Gmail',
-                        auth: {
-                            user: 'contact@goviddo.com',
-                            pass: 'Contact@GoViddo'
-                        },
-                        tls: {rejectUnauthorized: false},
-                        debug:true
-                    },
-                    {
-                        // default message fields
-            
-                        // sender info
-                        from: 'GoViddo <contact@goviddo.com>',
-                        headers: {
-                            'X-Laziness-level': 1000 // just an example header, no need to use this
-                        }
-                    });
-        
-                    var mailOptions = {
-                        to: toEmail,
-                        bcc: ccEmail,
-                        subject: subject,
-                        html: body,
-                        attachments: [{
-                            filename: 'GoViddo.png',
-                            path: 'https://goviddo.com/logo/gt1.png',
-                            cid: 'unique@goviddo.igm' //same cid value as in the html img src
-                        }]
-                    }
-        
-                    
-                    smtpTransport.sendMail(mailOptions, function (error, response) {
-                        if (error) {
-                            // res.end("error");
-                            resp.disp = "Mail Sent Failed...";
-                            resp.erm = error;
-                            return res.status(200).send(resp);
-
-                        } else {
-                            // res.end("sent");
-
-                            resp.disp = "Mail Sent Successfully...";
-                            return res.status(200).send(resp);
-
-                        }
-                    });
-
-
-
-
-
-                            
-                        }
-                    });
-
                 }
-            }
-        });
+                else {
+
+
+                    console.log(result.length);
+
+                    if (result.length) {
+                        resp.message = "User with this email already exists";
+                        resp.status = "failed";
+                        return res.status(200).send(resp);
+                    } else {
+
+                        var insertQuery = "INSERT INTO `user_table`(`first_name`, `last_name`, `email_id`, `password`, `phone_no`, `country`, `mail_subscription`) VALUES ('" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "', '" + contactNumber + "', '" + countryName + "', '" + submail + "')";
+                        db.query(insertQuery, function (err, result) {
+                            if (err) {
+                                resp.message = "Registration Failed due to database error";
+                                resp.status = "failed";
+                                return res.status(200).send(err);
+                            }
+                            else {
+                                resp.message = "Registration successful";
+                                resp.status = "success";
+
+
+
+                                var toEmail = email;
+                                var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
+                                var subject = "Activate Your GoViddo Account";
+
+                                var username = firstName + " " + lastName;
+
+                                var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
+                                    '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td align="center" valign="top">' +
+                                    '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td>' +
+                                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td align="left" valign="top">' +
+                                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td align="center" valign="top" width="150">&nbsp;</td>' +
+                                    '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
+                                    '<td align="right" valign="top" width="150">' +
+                                    '<table border="0" cellpadding="0" cellspacing="0">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td align="center" valign="top">' +
+                                    '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td>' +
+                                    '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td align="left" valign="top" width="100%">' +
+                                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
+                                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
+                                    '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
+                                    '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td align="center" valign="top">' +
+                                    '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
+                                    '<hr class="m_-6590730431353735716hr">' +
+                                    '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '<center>' +
+                                    '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
+                                    '&nbsp;' +
+                                    '<table border="0" cellpadding="0" cellspacing="0">' +
+                                    '<tbody>' +
+                                    '<tr>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</td>' +
+                                    '</tr>' +
+                                    '</tbody>' +
+                                    '</table>' +
+                                    '</center><div class="yj6qo"></div><div class="adL">' +
+                                    '</div></div></div>';
+
+
+
+                                const nodemailer = require("nodemailer");
+
+
+                                var smtpTransport = nodemailer.createTransport({
+                                    service: 'Gmail',
+                                    auth: {
+                                        user: 'contact@goviddo.com',
+                                        pass: 'Contact@GoViddo'
+                                    },
+                                    tls: { rejectUnauthorized: false },
+                                    debug: true
+                                },
+                                    {
+                                        // default message fields
+
+                                        // sender info
+                                        from: 'GoViddo <contact@goviddo.com>',
+                                        headers: {
+                                            'X-Laziness-level': 1000 // just an example header, no need to use this
+                                        }
+                                    });
+
+                                var mailOptions = {
+                                    to: toEmail,
+                                    bcc: ccEmail,
+                                    subject: subject,
+                                    html: body,
+                                    attachments: [{
+                                        filename: 'GoViddo.png',
+                                        path: 'https://goviddo.com/logo/gt1.png',
+                                        cid: 'unique@goviddo.igm' //same cid value as in the html img src
+                                    }]
+                                }
+
+
+                                smtpTransport.sendMail(mailOptions, function (error, response) {
+                                    if (error) {
+                                        // res.end("error");
+                                        resp.disp = "Mail Sent Failed...";
+                                        resp.erm = error;
+                                        return res.status(200).send(resp);
+
+                                    } else {
+                                        // res.end("sent");
+
+                                        resp.disp = "Mail Sent Successfully...";
+                                        return res.status(200).send(resp);
+
+                                    }
+                                });
+
+
+
+
+
+
+                            }
+                        });
+
+                    }
+                }
+            });
         }
 
     },
@@ -2171,7 +2173,7 @@ module.exports = {
 
                                     activeKeys.activePrivateKey = activePrivateKey;
                                     activeKeys.activePublicKey = activePublicKey;
-                                    
+
                                     resp.activePublicKey = activePublicKey;
 
                                     activeKeysArray = [];
@@ -2184,7 +2186,7 @@ module.exports = {
                                     cmd.get(
                                         cleosCreateOwnerKeys,
                                         function (err, data, stderr) {
-        
+
                                             var arr = data.split(": ");
                                             var Key = arr[1].split("Public key");
                                             var ownerPrivateKey = Key[0];
@@ -2192,29 +2194,29 @@ module.exports = {
                                             var ownerPublicKey = arr[2];
                                             var ownerPublicKey = ownerPublicKey.replace(/\n/g, '');
                                             //resp.createOwnerKeysMsg = "Owner Keys Created";
-        
+
                                             ownerKeys.ownerPrivateKey = ownerPrivateKey;
                                             ownerKeys.ownerPublicKey = ownerPublicKey;
-        
+
                                             ownerKeysArray = [];
                                             ownerKeysArray.push(ownerKeys);
-        
+
                                             resp.ownerKeys = ownerKeysArray;
-        
+
                                             console.log("Owner Private Key =" + ownerPrivateKey);
                                             console.log("Owner Public Key =" + ownerPublicKey);
-        
+
                                             //mainnet account creation command
                                             //let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.1 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
-        
-        
+
+
                                             //testnet account creation command
                                             let createEOSWalletCommand = "cleos -u https://eos.greymass.com/ system newaccount hellogoviddo " + walletName + " --stake-net '0.01 EOS' --stake-cpu '0.01 EOS' --buy-ram '0.2 EOS' " + ownerPublicKey + " " + resp.activePublicKey;
-        
-        
+
+
                                             console.log('Command to be executed', createEOSWalletCommand);
                                             //execute again cmd.get and run the createWalletCommand and return onwer and active keys with wallet name to the user
-        
+
                                             cmd.get(
                                                 createEOSWalletCommand,
                                                 function (err, data, stderr) {
@@ -2222,230 +2224,230 @@ module.exports = {
                                                     if (err == null) {
                                                         resp.accountCreatedMsg = "Account Created Successfully";
                                                         console.log("Account Created Successfully" + data);
-        
+
                                                         // send the user's details to the database
-                                let query = "INSERT INTO user_table (first_name, last_name, eosio_account_name, email_id, password) VALUES ('" + firstName + "', '" + lastName + "', '" + walletName + "', '" + email + "', '" + password + "')";
-                                db.query(query, function (err, result) {
-                                    if (err) {
-                                        resp.message = "Registration Failed due to database error";
-                                        return res.status(200).send(err);
-                                    }
-                                    resp.message = "Registration successful";
-        
-                var toEmail = email;
-                var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
-                var subject = "Activate Your GoViddo Account";
-        
-                var username = firstName+" "+lastName;
-        
-                var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
-                    '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td>' +
-                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="left" valign="top">' +
-                    '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
-                    '<tbody>' +
-                    '<tr>'+
-                     '<td align="center" valign="top" width="150">&nbsp;</td>' +
-                    '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
-                    '<td align="right" valign="top" width="150">' +
-                    '<table border="0" cellpadding="0" cellspacing="0">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td>' +
-                    '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="left" valign="top" width="100%">' +
-                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
-                    '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
-                    '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
-                    '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
-                    '</td>'+
-                    '</tr>'+
-                    '</tbody>'+
-                    '</table>'+
-                    '</td>'+
-                    '</tr>'+
-                    '</tbody>'+
-                    '</table>'+
-                    '</td>' +
-                    '</tr>' +
-                    '<tr>' +
-                    '<td align="center" valign="top">' +
-                    '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
-                    '<hr class="m_-6590730431353735716hr">' +
-                    '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '<center>' +
-                    '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
-                    '&nbsp;' +
-                    '<table border="0" cellpadding="0" cellspacing="0">' +
-                    '<tbody>' +
-                    '<tr>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</td>' +
-                    '</tr>' +
-                    '</tbody>' +
-                    '</table>' +
-                    '</center><div class="yj6qo"></div><div class="adL">' +
-                    '</div></div></div>';
-        
-        
-        
-                    const nodemailer = require("nodemailer");
-        
-        
-                    var smtpTransport = nodemailer.createTransport({
-                        service: 'Gmail',
-                        auth: {
-                            user: 'contact@goviddo.com',
-                            pass: 'Contact@GoViddo'
-                        },
-                        tls: {rejectUnauthorized: false},
-                        debug:true
-                    },
-                    {
-                        // default message fields
-            
-                        // sender info
-                        from: 'GoViddo <contact@goviddo.com>',
-                        headers: {
-                            'X-Laziness-level': 1000 // just an example header, no need to use this
-                        }
-                    });
-        
-                    var mailOptions = {
-                        to: toEmail,
-                        bcc: ccEmail,
-                        subject: subject,
-                        html: body,
-                        attachments: [{
-                            filename: 'GoViddo.png',
-                            path: 'https://goviddo.com/logo/gt1.png',
-                            cid: 'unique@goviddo.igm' //same cid value as in the html img src
-                        }]
-                    }
-        
-                    
-                    smtpTransport.sendMail(mailOptions, function (error, response) {
-                        if (error) {
-                            // res.end("error");
-                        } else {
-                            // res.end("sent");
-                        }
-                    });
-        
-        
-        
-                                    let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
-                                    console.log(sendEOSTokensRegistration);
-                                    cmd.get(
-                                        sendEOSTokensRegistration,
-                                        function (err, data, stderr) {
-        
-                                            let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key "+activeKeys.activePrivateKey;
-                                            cmd.get(
-                                                importKeysCommand,
-                                                function (err, data, stderr) {
-        
-                                                });
-                
-        
-                                            let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
-        
-                                            console.log(chkingQuery)
-        
-                                            db.query(chkingQuery, function (mern, mresn) {
-        
-                                                var userId = mresn[0].user_id;
-        
-                                                console.log(userId);
-        
-                                                let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','For Registration of New User','hellogoviddo')";
-        
-                                                db.query(queryInsertTransactions, function (mresr, mresultmm) {
-        
-                                                                return res.status(200).send(resp);
-                                            
-                                                });
-        
-                                            });
-        
-                                        }
-                                    );
-        
-        
-        
-                                });
-        
+                                                        let query = "INSERT INTO user_table (first_name, last_name, eosio_account_name, email_id, password) VALUES ('" + firstName + "', '" + lastName + "', '" + walletName + "', '" + email + "', '" + password + "')";
+                                                        db.query(query, function (err, result) {
+                                                            if (err) {
+                                                                resp.message = "Registration Failed due to database error";
+                                                                return res.status(200).send(err);
+                                                            }
+                                                            resp.message = "Registration successful";
+
+                                                            var toEmail = email;
+                                                            var ccEmail = "pratik@goviddo.com, mulaniimran27@gmail.com, contact@goviddo.com";
+                                                            var subject = "Activate Your GoViddo Account";
+
+                                                            var username = firstName + " " + lastName;
+
+                                                            var body = '<div id=":16h" class="ii gt"><div id=":16g" class="a3s aXjCH "><div class="adM">' +
+                                                                '</div><table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td align="center" valign="top">' +
+                                                                '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td>' +
+                                                                '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td align="left" valign="top">' +
+                                                                '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td align="center" valign="top" width="150">&nbsp;</td>' +
+                                                                '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
+                                                                '<td align="right" valign="top" width="150">' +
+                                                                '<table border="0" cellpadding="0" cellspacing="0">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '<tr>' +
+                                                                '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                                                '</tr>' +
+                                                                '<tr>' +
+                                                                '<td align="left" bgcolor="#E4E4E4" class="m_-6590730431353735716zero-lh" height="5" valign="top"><img alt="" height="5" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                                                '</tr>' +
+                                                                '<tr>' +
+                                                                '<td align="left" height="10" valign="top"><img alt="" height="1" src="https://ci5.googleusercontent.com/proxy/1CXwvAecP28cUqf8xbVYCJBCNFGxwXyzIpwM6GVCUUJ8kBccGK0pxoAGAOWxRv0soFYr3rmDcVD0LxT-0zL_wcayUbpmKB45u002MiuffBWu=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/spacer.gif" width="1" class="CToWUd"></td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '<tr>' +
+                                                                '<td align="center" valign="top">' +
+                                                                '<table border="0" cellpadding="10" cellspacing="0" width="600">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td>' +
+                                                                '<table border="0" cellpadding="0" cellspacing="20" width="100%">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td align="left" valign="top" width="100%">' +
+                                                                '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px"><span class="m_-6590730431353735716hero-title1">Welcome to GoViddo</span></span></font></p>' +
+                                                                '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
+                                                                '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
+                                                                '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '<tr>' +
+                                                                '<td align="center" valign="top">' +
+                                                                '<table align="center" border="0" cellpadding="10" cellspacing="0" class="m_-6590730431353735716grey-bg" width="600">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td class="m_-6590730431353735716ff m_-6590730431353735716font-size" style="padding-left:30px;padding-right:30px">' +
+                                                                '<hr class="m_-6590730431353735716hr">' +
+                                                                '<p>For any queries, write us on <a class="m_-6590730431353735716link" href="mailto:contact@goviddo.com" target="_blank">contact@goviddo.com</a></p>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '<center>' +
+                                                                '<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-top:1px solid #e5e5e5" width="100%">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '<td align="center" style="padding-top:20px;padding-bottom:20px" valign="top">Copyright (C) GoViddo Ltd. All rights reserved.<br>' +
+                                                                '&nbsp;' +
+                                                                '<table border="0" cellpadding="0" cellspacing="0">' +
+                                                                '<tbody>' +
+                                                                '<tr>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</td>' +
+                                                                '</tr>' +
+                                                                '</tbody>' +
+                                                                '</table>' +
+                                                                '</center><div class="yj6qo"></div><div class="adL">' +
+                                                                '</div></div></div>';
+
+
+
+                                                            const nodemailer = require("nodemailer");
+
+
+                                                            var smtpTransport = nodemailer.createTransport({
+                                                                service: 'Gmail',
+                                                                auth: {
+                                                                    user: 'contact@goviddo.com',
+                                                                    pass: 'Contact@GoViddo'
+                                                                },
+                                                                tls: { rejectUnauthorized: false },
+                                                                debug: true
+                                                            },
+                                                                {
+                                                                    // default message fields
+
+                                                                    // sender info
+                                                                    from: 'GoViddo <contact@goviddo.com>',
+                                                                    headers: {
+                                                                        'X-Laziness-level': 1000 // just an example header, no need to use this
+                                                                    }
+                                                                });
+
+                                                            var mailOptions = {
+                                                                to: toEmail,
+                                                                bcc: ccEmail,
+                                                                subject: subject,
+                                                                html: body,
+                                                                attachments: [{
+                                                                    filename: 'GoViddo.png',
+                                                                    path: 'https://goviddo.com/logo/gt1.png',
+                                                                    cid: 'unique@goviddo.igm' //same cid value as in the html img src
+                                                                }]
+                                                            }
+
+
+                                                            smtpTransport.sendMail(mailOptions, function (error, response) {
+                                                                if (error) {
+                                                                    // res.end("error");
+                                                                } else {
+                                                                    // res.end("sent");
+                                                                }
+                                                            });
+
+
+
+                                                            let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"Reward for register with goviddo\"}' -p  hellogoviddo";
+                                                            console.log(sendEOSTokensRegistration);
+                                                            cmd.get(
+                                                                sendEOSTokensRegistration,
+                                                                function (err, data, stderr) {
+
+                                                                    let importKeysCommand = "cleos -u https://eos.greymass.com/ wallet import --private-key " + activeKeys.activePrivateKey;
+                                                                    cmd.get(
+                                                                        importKeysCommand,
+                                                                        function (err, data, stderr) {
+
+                                                                        });
+
+
+                                                                    let chkingQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + email + "'";
+
+                                                                    console.log(chkingQuery)
+
+                                                                    db.query(chkingQuery, function (mern, mresn) {
+
+                                                                        var userId = mresn[0].user_id;
+
+                                                                        console.log(userId);
+
+                                                                        let queryInsertTransactions = "INSERT INTO `video_transactions`(`transaction_amount`, `transaction_user_id`, `transaction_memo`, `transaction_from`) VALUES ('0.01 GOV','" + userId + "','For Registration of New User','hellogoviddo')";
+
+                                                                        db.query(queryInsertTransactions, function (mresr, mresultmm) {
+
+                                                                            return res.status(200).send(resp);
+
+                                                                        });
+
+                                                                    });
+
+                                                                }
+                                                            );
+
+
+
+                                                        });
+
                                                     }
                                                     else {
-                                                        resp.accountCreatedMsg = "Account creation failed "+createEOSWalletCommand;
+                                                        resp.accountCreatedMsg = "Account creation failed " + createEOSWalletCommand;
                                                         console.log("Account creation failed" + err);
                                                         return res.status(200).send(resp);
-        
+
                                                     }
                                                 }
                                             );
-        
-        
+
+
                                             resolve(resp);
-        
+
                                         }
                                     );
 
@@ -2797,8 +2799,8 @@ module.exports = {
             '<td align="left" valign="top">' +
             '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +
             '<tbody>' +
-            '<tr>'+
-             '<td align="center" valign="top" width="150">&nbsp;</td>' +
+            '<tr>' +
+            '<td align="center" valign="top" width="150">&nbsp;</td>' +
             '<td align="center" height="80" valign="middle" width="300"><a href="https://goviddo.com" target="_blank" ><img alt="" height="75" src="cid:unique@goviddo.igm" width="150" class="CToWUd"></a></td>' +
             '<td align="right" valign="top" width="150">' +
             '<table border="0" cellpadding="0" cellspacing="0">' +
@@ -2844,14 +2846,14 @@ module.exports = {
             '<p class="m_-6590730431353735716font m_-6590730431353735716lh"><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Dear ' + username + ',</span></font></p>' +
             '<p><font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"><span style="font-size:14px;line-height:20.8px">Thank you for joining GoViddo.</span></font></p>' +
             '<p><a href="https://goviddo.com/thankspage.html" target="_blank" data-saferedirecturl="https://goviddo.com/thankspage.html"><font color="#333333"><img alt="" class="m_-6590730431353735716white-border-button1 CToWUd" height="35" src="https://ci3.googleusercontent.com/proxy/_8FEpQajlZp4Gzq-HQSIoE-0w0rnhzurhH0cUF2EoYk6GRnSyORG1QD8A5AQHhhsusWDo57i4HKiqZ7XDPUId7NW6-vE0kboSd65id3Xg5RbdKYydoAKqyV8vQ=s0-d-e1-ft#https://www.indianmoviefriend.com/images/email_icon/btn-verification.png" style="border:#fff solid 1px" width="200"></font></a></p>' +
-            '</td>'+
-            '</tr>'+
-            '</tbody>'+
-            '</table>'+
-            '</td>'+
-            '</tr>'+
-            '</tbody>'+
-            '</table>'+
+            '</td>' +
+            '</tr>' +
+            '</tbody>' +
+            '</table>' +
+            '</td>' +
+            '</tr>' +
+            '</tbody>' +
+            '</table>' +
             '</td>' +
             '</tr>' +
             '<tr>' +
@@ -2891,21 +2893,21 @@ module.exports = {
 
 
 
-            const nodemailer = require("nodemailer");
+        const nodemailer = require("nodemailer");
 
 
-            var smtpTransport = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: 'contact@goviddo.com',
-                    pass: 'Contact@GoViddo'
-                },
-                        tls: {rejectUnauthorized: false},
-                        debug:true
+        var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: 'contact@goviddo.com',
+                pass: 'Contact@GoViddo'
             },
+            tls: { rejectUnauthorized: false },
+            debug: true
+        },
             {
                 // default message fields
-    
+
                 // sender info
                 from: 'GoViddo <contact@goviddo.com>',
                 headers: {
@@ -2913,31 +2915,31 @@ module.exports = {
                 }
             });
 
-            var mailOptions = {
-                to: toEmail,
-                bcc: ccEmail,
-                subject: subject,
-                html: body,
-                attachments: [{
-                    filename: 'GoViddo.png',
-                    path: 'https://goviddo.com/logo/gt1.png',
-                    cid: 'unique@goviddo.igm' //same cid value as in the html img src
-                }]
+        var mailOptions = {
+            to: toEmail,
+            bcc: ccEmail,
+            subject: subject,
+            html: body,
+            attachments: [{
+                filename: 'GoViddo.png',
+                path: 'https://goviddo.com/logo/gt1.png',
+                cid: 'unique@goviddo.igm' //same cid value as in the html img src
+            }]
+        }
+
+        var resp = {};
+
+        smtpTransport.sendMail(mailOptions, function (error, response) {
+            if (error) {
+                // res.end("error");
+                resp.msg = "error";
+                return res.status(500).send(resp);
+            } else {
+                // res.end("sent");
+                resp.msg = "success";
+                return res.status(200).send(resp);
             }
-
-            var resp = {};
-
-            smtpTransport.sendMail(mailOptions, function (error, response) {
-                if (error) {
-                    // res.end("error");
-                    resp.msg = "error";
-                    return res.status(500).send(resp);
-                } else {
-                    // res.end("sent");
-                    resp.msg = "success";
-                    return res.status(200).send(resp);
-                }
-            });
+        });
 
 
 
@@ -2976,17 +2978,17 @@ module.exports = {
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
 
 
     crowdRelatedGeneres: (req, res) => {
-        
+
         let selectedMainCategoryId = req.body.maincatid;
 
-        let configQuery = "SELECT * FROM `crowd_funding_category_list` WHERE `crowd_fund_cat_status` = '1' and `related_genere_id` = '"+selectedMainCategoryId+"'";
+        let configQuery = "SELECT * FROM `crowd_funding_category_list` WHERE `crowd_fund_cat_status` = '1' and `related_genere_id` = '" + selectedMainCategoryId + "'";
 
         var resp = {};
         resp.status = "success";
@@ -3010,17 +3012,17 @@ module.exports = {
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
 
 
     subGenereList: (req, res) => {
-        
-        
+
+
         let genereIdForSubGenere = req.body.genereIdForSubGenere;
-        let configQuery = "SELECT * FROM `subgenere_table` WHERE `sub_genere_status` = '1' and `related_genere_id` = '"+genereIdForSubGenere+"'";
+        let configQuery = "SELECT * FROM `subgenere_table` WHERE `sub_genere_status` = '1' and `related_genere_id` = '" + genereIdForSubGenere + "'";
 
         var resp = {};
         resp.status = "success";
@@ -3044,7 +3046,7 @@ module.exports = {
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
@@ -3082,7 +3084,7 @@ module.exports = {
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
@@ -3106,7 +3108,7 @@ module.exports = {
                 var details = {};
 
                 details.crowdfund_project_id = result[i].crowdfund_project_id;
-               
+
                 details.crowdfund_project_title = result[i].crowdfund_project_title;
                 details.crowdfund_short_description = result[i].crowdfund_short_description;
                 details.crowdfund_project_logo = result[i].crowdfund_project_logo;
@@ -3115,7 +3117,7 @@ module.exports = {
                 details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
                 details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
                 details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
-                details.crowdfund_total_target	 = result[i].crowdfund_total_target;
+                details.crowdfund_total_target = result[i].crowdfund_total_target;
                 details.crowdfund_total_raised = result[i].crowdfund_total_raised;
                 details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
                 details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
@@ -3123,13 +3125,13 @@ module.exports = {
                 details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
                 details.crowdfund_project_approval = result[i].crowdfund_project_approval;
                 details.crowdfund_project_status = result[i].crowdfund_project_status;
-               
+
                 data.push(details);
 
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
@@ -3142,14 +3144,13 @@ module.exports = {
         let projectId = req.body.proid;
         var configQuery = "";
         configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '67' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
-        if(projectId == 0)
-        {
+        if (projectId == 0) {
             configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '67' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
         }
-        else{
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '"+projectId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
+        else {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` INNER JOIN video_genere_table as vgt ON vgt.video_genere_id = cfcl.`related_genere_id` INNER JOIN user_table as cud ON cud.user_id = cpd.`userid_given_by` WHERE `crowdfund_project_id` = '" + projectId + "' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
         }
-      
+
         var resp = {};
         resp.status = "success";
 
@@ -3167,7 +3168,7 @@ module.exports = {
 
 
                 details.crowdfund_project_id = result[i].crowdfund_project_id;
-               
+
                 details.crowdfund_project_title = result[i].crowdfund_project_title;
                 details.crowdfund_short_description = result[i].crowdfund_short_description;
                 details.crowdfund_project_logo = result[i].crowdfund_project_logo;
@@ -3176,7 +3177,7 @@ module.exports = {
                 details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
                 details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
                 details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
-                details.crowdfund_total_target	 = result[i].crowdfund_total_target;
+                details.crowdfund_total_target = result[i].crowdfund_total_target;
                 details.crowdfund_total_raised = result[i].crowdfund_total_raised;
                 details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
                 details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
@@ -3194,8 +3195,8 @@ module.exports = {
                 details.other_benefits = result[i].other_benefits;
                 details.pro_usp = result[i].pro_usp;
                 details.crowdfund_cast_details_array = result[i].crowdfund_cast_details_array;
-                
-                
+
+
                 details.news_description = result[i].news_description;
                 details.news_image = result[i].news_image;
                 details.news_redirection = result[i].news_redirection;
@@ -3205,13 +3206,13 @@ module.exports = {
                 details.project_given_by_user_id = result[i].email_id;
 
                 details.select_main_cat = result[i].project_main_category_details_config;
-               
+
                 data.push(details);
 
             }
 
             resp.data = data;
-        
+
             return res.status(200).send(resp);
         });
     },
@@ -3220,19 +3221,19 @@ module.exports = {
     updatePitchDetails: (req, res) => {
         let projecttitle = req.body.projecttitle;
         let selectedradio = req.body.selectedradio;
-        let project_short_description = req.body.project_short_description; 
+        let project_short_description = req.body.project_short_description;
 
-        let projectlogo_url = req.body.projectlogo_url; 
-        let project_banner_img_url = req.body.project_banner_img_url; 
-        let project_idea = req.body.project_idea; 
-        let videolink = req.body.videolink; 
-        let arrayForTeam = req.body.arrayForTeam; 
+        let projectlogo_url = req.body.projectlogo_url;
+        let project_banner_img_url = req.body.project_banner_img_url;
+        let project_idea = req.body.project_idea;
+        let videolink = req.body.videolink;
+        let arrayForTeam = req.body.arrayForTeam;
 
-        let arrayForCasting = req.body.arrayForCasting; 
+        let arrayForCasting = req.body.arrayForCasting;
 
 
-        let documents_pdf_urls = req.body.documents_pdf_urls; 
-        let useridformypitch = req.body.useridformypitch; 
+        let documents_pdf_urls = req.body.documents_pdf_urls;
+        let useridformypitch = req.body.useridformypitch;
         let select_category = req.body.select_category;
         let crowdfund_total_target = req.body.crowdfund_total_target;
 
@@ -3249,8 +3250,8 @@ module.exports = {
 
 
         let updatepitchid = req.body.updatepitchid;
-        
-        var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_cast_details_array` = '"+arrayForCasting+"', `pro_usp` = '"+usp_pro+"', `crowdfund_project_category_details_name` = '"+projectgenere+"', `other_benefits` = '"+other_benefits+"', `tax_benefits` = '"+taxbenifites+"', `roi` = '"+roi+"', `crowdfund_total_raised` = '"+crowdfund_total_raised_amount+"', `crowdfund_project_title`='"+projecttitle+"',`crowdfund_short_description`='"+project_short_description+"',`project_given_by`='"+selectedradio+"',`crowdfund_project_logo`='"+projectlogo_url+"',`crowdfund_project_banner_image`='"+project_banner_img_url+"',`crowdfund_project_idea_description`='"+project_idea+"',`crowdfund_project_idea_video_url`='"+videolink+"',`crowdfund_teal_details_array`='"+arrayForTeam+"',`crowdfund_documents_pdf_list`='"+documents_pdf_urls+"',`crowdfund_total_target`='"+crowdfund_total_target+"',`crowdfund_project_category_details`='"+select_category+"' WHERE `crowdfund_project_id` = '"+updatepitchid+"'";
+
+        var queryUpdate = "UPDATE `crowdfund_project_details` SET `crowdfund_cast_details_array` = '" + arrayForCasting + "', `pro_usp` = '" + usp_pro + "', `crowdfund_project_category_details_name` = '" + projectgenere + "', `other_benefits` = '" + other_benefits + "', `tax_benefits` = '" + taxbenifites + "', `roi` = '" + roi + "', `crowdfund_total_raised` = '" + crowdfund_total_raised_amount + "', `crowdfund_project_title`='" + projecttitle + "',`crowdfund_short_description`='" + project_short_description + "',`project_given_by`='" + selectedradio + "',`crowdfund_project_logo`='" + projectlogo_url + "',`crowdfund_project_banner_image`='" + project_banner_img_url + "',`crowdfund_project_idea_description`='" + project_idea + "',`crowdfund_project_idea_video_url`='" + videolink + "',`crowdfund_teal_details_array`='" + arrayForTeam + "',`crowdfund_documents_pdf_list`='" + documents_pdf_urls + "',`crowdfund_total_target`='" + crowdfund_total_target + "',`crowdfund_project_category_details`='" + select_category + "' WHERE `crowdfund_project_id` = '" + updatepitchid + "'";
         var resp = {};
         resp.status = "success";
         resp.query = queryUpdate;
@@ -3259,9 +3260,9 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-                return res.status(200).send(resp);
+            return res.status(200).send(resp);
         });
-    
+
     },
 
 
@@ -3269,15 +3270,15 @@ module.exports = {
 
         let projecttitle = req.body.projecttitle;
         let selectedradio = req.body.selectedradio;
-        let project_short_description = req.body.project_short_description; 
+        let project_short_description = req.body.project_short_description;
 
-        let projectlogo_url = req.body.projectlogo_url; 
-        let project_banner_img_url = req.body.project_banner_img_url; 
-        let project_idea = req.body.project_idea; 
-        let videolink = req.body.videolink; 
-        let arrayForTeam = req.body.arrayForTeam; 
-        let documents_pdf_urls = req.body.documents_pdf_urls; 
-        let useridformypitch = req.body.useridformypitch; 
+        let projectlogo_url = req.body.projectlogo_url;
+        let project_banner_img_url = req.body.project_banner_img_url;
+        let project_idea = req.body.project_idea;
+        let videolink = req.body.videolink;
+        let arrayForTeam = req.body.arrayForTeam;
+        let documents_pdf_urls = req.body.documents_pdf_urls;
+        let useridformypitch = req.body.useridformypitch;
         let select_category = req.body.select_category;
         let crowdfund_total_target = req.body.crowdfund_total_target;
         let crowdfund_project_category_details_name = req.body.selected_genere_name_send;
@@ -3300,15 +3301,15 @@ module.exports = {
 
 
 
-        
+
         var configQuery = "";
 
         console.log(req.body.arrayForTeam);
         console.log(req.body.documents_pdf_urls);
-        
-        configQuery = "INSERT INTO `crowdfund_project_details`(`crowdfund_cast_details_array`, `pro_usp`, `userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`, `roi`, `tax_benefits`, `crowdfund_project_category_details_name`, `sub_genere_category_name`, `sub_genere_id`, `other_benefits`) VALUES ('"+arrayForCasting+"', '"+pro_usp+"', '"+useridformypitch+"','"+projecttitle+"', '"+selectedradio+"', '"+project_short_description+"', '"+projectlogo_url+"', '"+project_banner_img_url+"', '"+project_idea+"', '"+videolink+"', '"+arrayForTeam+"', '"+documents_pdf_urls+"', '"+crowdfund_total_target+"', '"+crowdfund_total_raised_amount+"','0','"+select_category+"', '"+newmaincatid+"', '"+roi+"', '"+taxbenifites+"', '"+crowdfund_project_category_details_name+"', '"+selectedSubGenere+"', '"+selectedSubGenereId+"', '"+other_benefits+"')";
-        
-      
+
+        configQuery = "INSERT INTO `crowdfund_project_details`(`crowdfund_cast_details_array`, `pro_usp`, `userid_given_by`, `crowdfund_project_title`,`project_given_by`,  `crowdfund_short_description`, `crowdfund_project_logo`, `crowdfund_project_banner_image`, `crowdfund_project_idea_description`, `crowdfund_project_idea_video_url`, `crowdfund_teal_details_array`, `crowdfund_documents_pdf_list`, `crowdfund_total_target`, `crowdfund_total_raised`, `crowdfund_number_of_investors`, `crowdfund_project_category_details`, `project_main_category_details_config`, `roi`, `tax_benefits`, `crowdfund_project_category_details_name`, `sub_genere_category_name`, `sub_genere_id`, `other_benefits`) VALUES ('" + arrayForCasting + "', '" + pro_usp + "', '" + useridformypitch + "','" + projecttitle + "', '" + selectedradio + "', '" + project_short_description + "', '" + projectlogo_url + "', '" + project_banner_img_url + "', '" + project_idea + "', '" + videolink + "', '" + arrayForTeam + "', '" + documents_pdf_urls + "', '" + crowdfund_total_target + "', '" + crowdfund_total_raised_amount + "','0','" + select_category + "', '" + newmaincatid + "', '" + roi + "', '" + taxbenifites + "', '" + crowdfund_project_category_details_name + "', '" + selectedSubGenere + "', '" + selectedSubGenereId + "', '" + other_benefits + "')";
+
+
         var resp = {};
         resp.status = "success";
 
@@ -3318,7 +3319,7 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-                return res.status(200).send(resp);
+            return res.status(200).send(resp);
         });
     },
 
@@ -3327,16 +3328,16 @@ module.exports = {
 
         let full_name = req.body.full_name;
         let emailid = req.body.emailid;
-        let password = req.body.password; 
+        let password = req.body.password;
 
-        let dob = req.body.dob; 
-        let account_holder_type = req.body.account_holder_type; ; 
-        
+        let dob = req.body.dob;
+        let account_holder_type = req.body.account_holder_type;;
+
         var configQuery = "";
         var resp = {};
-            
 
-        var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '"+emailid+"'";
+
+        var queryCheck = "SELECT * FROM `crowdfund_user_details` WHERE `crowdfund_user_email` = '" + emailid + "'";
         db.query(queryCheck, function (err, result) {
             if (err) {
                 resp.message = err;
@@ -3345,219 +3346,160 @@ module.exports = {
             else {
 
 
-                console.log(result.length);full_name
+                console.log(result.length); full_name
 
                 if (result.length) {
                     resp.status = "failed";
                     resp.message = "User with this email already exists";
                     return res.status(200).send(resp);
                 } else {
-                    configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('"+full_name+"', '"+emailid+"', '"+password+"', '"+dob+"', '"+account_holder_type+"')";
-        
-      
-                    
+                    configQuery = "INSERT INTO `crowdfund_user_details`(`crowd_fund_user_full_name`, `crowdfund_user_email`, `crowdfund_user_password`, `crowdfund_user_dob`, `crowdfund_user_type`) VALUES ('" + full_name + "', '" + emailid + "', '" + password + "', '" + dob + "', '" + account_holder_type + "')";
+
+
+
                     console.log(configQuery);
-            
+
                     db.query(configQuery, function (err, result) {
                         if (err) {
                             return res.status(500).send(err);
                         }
-                            resp.status = "success";
-                            resp.userid = result.insertId;
-                            return res.status(200).send(resp);
+                        resp.status = "success";
+                        resp.userid = result.insertId;
+                        return res.status(200).send(resp);
                     });
-            
+
                 }
             }
         });
 
 
-            },
+    },
 
 
 
-            updateCrowdFundProfile:(req, res) =>{
-                    let emailId = req.body.userEmailId;
-                    let userId = req.body.userid;
-                    let fullName = req.body.fullname;
-                    let dob = req.body.dob;
-                    let eoswalletnamesend = req.body.eoswalletname;
-                    var configQuery = "";
+    updateCrowdFundProfile: (req, res) => {
+        let emailId = req.body.userEmailId;
+        let userId = req.body.userid;
+        let fullName = req.body.fullname;
+        let dob = req.body.dob;
+        let eoswalletnamesend = req.body.eoswalletname;
+        var configQuery = "";
 
-                    var resp = {};
-                    
-                    resp.eoswalletnamesend = eoswalletnamesend;
-                    
-                    
+        var resp = {};
 
-                    var testQuery = "SELECT * FROM `user_table` WHERE `user_id` = '"+userId+"'";
-                    db.query(testQuery, function (err, result) {
-                        var oldEmail = result[0].crowdfund_user_email;
+        resp.eoswalletnamesend = eoswalletnamesend;
 
 
-                        if(oldEmail != emailId)
-                        {
-                            var checkNewEmail = "SELECT * FROM `user_table` WHERE `crowdfund_user_email` = '"+emailId+"'";
-                            db.query(checkNewEmail, function (err1, result1) {
-                                if (err1) {
-                                    return res.status(500).send(err1);
-                                }
-                                else{
-                                    if(result1.length > 0)
-                                    {
-                                        resp.status = "failed";
-                                        resp.msg = "This email id is already is in use, please try other email id";
-                                        return res.status(200).send(resp);
-                                    }
-                                    else{
-                                        configQuery = "UPDATE `user_table` SET `eos_wallet_name`='"+eoswalletnamesend+"', `first_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `crowdfun_user_id` = '"+userId+"'"; 
-                                        resp.query = configQuery;
-                                        db.query(configQuery, function (err2, result2) {
-                                            resp.status = "success";
-                                            //resp.result = result2;
-                                            resp.msg = "Profile updated successfully";
-                                            return res.status(200).send(resp);
-                                        });           
-                                    }
-                                }
-                            });
+
+        var testQuery = "SELECT * FROM `user_table` WHERE `user_id` = '" + userId + "'";
+        db.query(testQuery, function (err, result) {
+            var oldEmail = result[0].crowdfund_user_email;
+
+
+            if (oldEmail != emailId) {
+                var checkNewEmail = "SELECT * FROM `user_table` WHERE `crowdfund_user_email` = '" + emailId + "'";
+                db.query(checkNewEmail, function (err1, result1) {
+                    if (err1) {
+                        return res.status(500).send(err1);
+                    }
+                    else {
+                        if (result1.length > 0) {
+                            resp.status = "failed";
+                            resp.msg = "This email id is already is in use, please try other email id";
+                            return res.status(200).send(resp);
                         }
-                        else{
-                            configQuery = "UPDATE `user_table` SET `first_name`='"+fullName+"',`crowdfund_user_email`='"+emailId+"',`crowdfund_user_dob`='"+dob+"' WHERE `user_id` = '"+userId+"'"; 
+                        else {
+                            configQuery = "UPDATE `user_table` SET `eos_wallet_name`='" + eoswalletnamesend + "', `first_name`='" + fullName + "',`crowdfund_user_email`='" + emailId + "',`crowdfund_user_dob`='" + dob + "' WHERE `crowdfun_user_id` = '" + userId + "'";
+                            resp.query = configQuery;
                             db.query(configQuery, function (err2, result2) {
                                 resp.status = "success";
+                                //resp.result = result2;
                                 resp.msg = "Profile updated successfully";
                                 return res.status(200).send(resp);
-                            });            
+                            });
                         }
-
-                    });
-                    
-            },
-
-            editCrowdFundProfile:(req, res) =>{
-              
-                    let emailId = req.body.userEmailId;
-                    let userId = req.body.userid;
-                    var configQuery = "";
-                    
-                    configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+emailId+"' and `user_id` = '"+userId+"' and `status` = '1'";            
-                    
-                  
-                    var resp = {};
+                    }
+                });
+            }
+            else {
+                configQuery = "UPDATE `user_table` SET `first_name`='" + fullName + "',`crowdfund_user_email`='" + emailId + "',`crowdfund_user_dob`='" + dob + "' WHERE `user_id` = '" + userId + "'";
+                db.query(configQuery, function (err2, result2) {
                     resp.status = "success";
-                    
-                    db.query(configQuery, function (err, result) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-            
-                        let data = [];
-            
-                        for (var i = 0; i < result.length; i++) {
-            
-                            var details = {};
-            
-                            details.crowdfun_user_id = result[i].user_id;
-                           
-                            details.crowd_fund_user_full_name = result[i].first_name+" "+result[i].last_name;
-                            details.first_name = result[i].first_name;
-                            details.last_name = result[i].last_name;
-                            details.crowdfund_user_email = result[i].email_id;
-
-                            details.crowdfund_user_password = result[i].password;
-                            details.phone_no = result[i].phone_no;
-                            details.country = result[i].country;
-
-                            details.crowdfund_user_dob = result[i].birth_date;
-                            details.eos_wallet_name = result[i].eosio_account_name;
-                        
-
-                            
-                            data.push(details);
-            
-                        }
-            
-                        resp.data = data;
-                    
-                        return res.status(200).send(resp);
-                    });
-                
-            },
-
-
-
-
-
-            getAllDataWithCatIdForSpecificUser:(req, res) => {
-
-                let categoryId = req.body.catid;
-                let userId = req.body.userid;
-                var configQuery = "";
-                if(categoryId == 0)
-                {
-                    configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `userid_given_by` = '"+userId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
-                }
-                else{
-                    configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `userid_given_by` = '"+userId+"' and `project_main_category_details_config` = '"+categoryId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
-                }
-              
-                var resp = {};
-                resp.status = "success";
-                resp.catidreturn = categoryId;
-        
-                db.query(configQuery, function (err, result) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-        
-                    let data = [];
-        
-                    for (var i = 0; i < result.length; i++) {
-        
-                        var details = {};
-        
-                        details.crowdfund_project_id = result[i].crowdfund_project_id;
-                       
-                        details.crowdfund_project_title = result[i].crowdfund_project_title;
-                        details.crowdfund_short_description = result[i].crowdfund_short_description;
-                        details.crowdfund_project_logo = result[i].crowdfund_project_logo;
-                        details.crowdfund_project_banner_image = result[i].crowdfund_project_banner_image;
-                        details.crowdfund_project_idea_description = result[i].crowdfund_project_idea_description;
-                        details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
-                        details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
-                        details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
-                        details.crowdfund_total_target	 = result[i].crowdfund_total_target;
-                        details.crowdfund_total_raised = result[i].crowdfund_total_raised;
-                        details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
-                        details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
-                        details.crowd_funding_category_name = result[i].crowd_funding_category_name;
-                        details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
-                        details.crowdfund_project_approval = result[i].crowdfund_project_approval;
-                        details.crowdfund_project_status = result[i].crowdfund_project_status;
-                       
-                        data.push(details);
-        
-                    }
-        
-                    resp.data = data;
-                
+                    resp.msg = "Profile updated successfully";
                     return res.status(200).send(resp);
                 });
-            },
+            }
 
-    getAllDataWithCatId: (req, res) => {
+        });
+
+    },
+
+    editCrowdFundProfile: (req, res) => {
+
+        let emailId = req.body.userEmailId;
+        let userId = req.body.userid;
+        var configQuery = "";
+
+        configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + emailId + "' and `user_id` = '" + userId + "' and `status` = '1'";
+
+
+        var resp = {};
+        resp.status = "success";
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.crowdfun_user_id = result[i].user_id;
+
+                details.crowd_fund_user_full_name = result[i].first_name + " " + result[i].last_name;
+                details.first_name = result[i].first_name;
+                details.last_name = result[i].last_name;
+                details.crowdfund_user_email = result[i].email_id;
+
+                details.crowdfund_user_password = result[i].password;
+                details.phone_no = result[i].phone_no;
+                details.country = result[i].country;
+
+                details.crowdfund_user_dob = result[i].birth_date;
+                details.eos_wallet_name = result[i].eosio_account_name;
+
+
+
+                data.push(details);
+
+            }
+
+            resp.data = data;
+
+            return res.status(200).send(resp);
+        });
+
+    },
+
+
+
+
+
+    getAllDataWithCatIdForSpecificUser: (req, res) => {
 
         let categoryId = req.body.catid;
+        let userId = req.body.userid;
         var configQuery = "";
-        if(categoryId == 0)
-        {
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
+        if (categoryId == 0) {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `userid_given_by` = '" + userId + "' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
         }
-        else{
-            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `project_main_category_details_config` = '"+categoryId+"' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";            
+        else {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `userid_given_by` = '" + userId + "' and `project_main_category_details_config` = '" + categoryId + "' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
         }
-      
+
         var resp = {};
         resp.status = "success";
         resp.catidreturn = categoryId;
@@ -3574,7 +3516,7 @@ module.exports = {
                 var details = {};
 
                 details.crowdfund_project_id = result[i].crowdfund_project_id;
-               
+
                 details.crowdfund_project_title = result[i].crowdfund_project_title;
                 details.crowdfund_short_description = result[i].crowdfund_short_description;
                 details.crowdfund_project_logo = result[i].crowdfund_project_logo;
@@ -3583,7 +3525,7 @@ module.exports = {
                 details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
                 details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
                 details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
-                details.crowdfund_total_target	 = result[i].crowdfund_total_target;
+                details.crowdfund_total_target = result[i].crowdfund_total_target;
                 details.crowdfund_total_raised = result[i].crowdfund_total_raised;
                 details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
                 details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
@@ -3591,28 +3533,83 @@ module.exports = {
                 details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
                 details.crowdfund_project_approval = result[i].crowdfund_project_approval;
                 details.crowdfund_project_status = result[i].crowdfund_project_status;
-               
+
                 data.push(details);
 
             }
 
             resp.data = data;
-        
+
+            return res.status(200).send(resp);
+        });
+    },
+
+    getAllDataWithCatId: (req, res) => {
+
+        let categoryId = req.body.catid;
+        var configQuery = "";
+        if (categoryId == 0) {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1' ORDER BY RAND() LIMIT 1";
+        }
+        else {
+            configQuery = "SELECT * FROM `crowdfund_project_details` as cpd INNER JOIN `crowd_funding_category_list` as cfcl ON cfcl.`crowd_fund_cat_id` = cpd.`crowdfund_project_category_details` WHERE `project_main_category_details_config` = '" + categoryId + "' and `crowdfund_project_approval` = '1' and `crowdfund_project_status` = '1'";
+        }
+
+        var resp = {};
+        resp.status = "success";
+        resp.catidreturn = categoryId;
+
+        db.query(configQuery, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            let data = [];
+
+            for (var i = 0; i < result.length; i++) {
+
+                var details = {};
+
+                details.crowdfund_project_id = result[i].crowdfund_project_id;
+
+                details.crowdfund_project_title = result[i].crowdfund_project_title;
+                details.crowdfund_short_description = result[i].crowdfund_short_description;
+                details.crowdfund_project_logo = result[i].crowdfund_project_logo;
+                details.crowdfund_project_banner_image = result[i].crowdfund_project_banner_image;
+                details.crowdfund_project_idea_description = result[i].crowdfund_project_idea_description;
+                details.crowdfund_project_idea_video_url = result[i].crowdfund_project_idea_video_url;
+                details.crowdfund_team_details_array = result[i].crowdfund_teal_details_array;
+                details.crowdfund_documents_pdf_list = result[i].crowdfund_documents_pdf_list;
+                details.crowdfund_total_target = result[i].crowdfund_total_target;
+                details.crowdfund_total_raised = result[i].crowdfund_total_raised;
+                details.crowdfund_number_of_investors = result[i].crowdfund_number_of_investors;
+                details.crowdfund_project_category_details = result[i].crowdfund_project_category_details;
+                details.crowd_funding_category_name = result[i].crowd_funding_category_name;
+                details.crodfund_project_upload_date = result[i].crodfund_project_upload_date;
+                details.crowdfund_project_approval = result[i].crowdfund_project_approval;
+                details.crowdfund_project_status = result[i].crowdfund_project_status;
+
+                data.push(details);
+
+            }
+
+            resp.data = data;
+
             return res.status(200).send(resp);
         });
     },
 
 
     testapi: (req, res) => {
-            let text = "Demo";
-            let test = "Demo1";
-            var resp = {};
-            resp.status = "success";
+        let text = "Demo";
+        let test = "Demo1";
+        var resp = {};
+        resp.status = "success";
 
-            resp.text = text;
-            resp.test = test;
-            
-            return res.status(200).send(resp);
+        resp.text = text;
+        resp.test = test;
+
+        return res.status(200).send(resp);
 
 
 
@@ -3623,43 +3620,42 @@ module.exports = {
         let emailId = req.body.email;
         let password = req.body.password;
         var configQuery = "";
-        
-        configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '"+emailId+"' and `password` = '"+password+"' and `status` = '1'";
-        
-      
+
+        configQuery = "SELECT * FROM `user_table` WHERE `email_id` = '" + emailId + "' and `password` = '" + password + "' and `status` = '1'";
+
+
         var resp = {};
-        
-       
+
+
         db.query(configQuery, function (err, result) {
             if (err) {
                 return res.status(500).send(err);
             }
 
-            if(result.length)
-            {
+            if (result.length) {
                 resp.status = "success";
                 for (var i = 0; i < result.length; i++) {
-                
+
                     resp.crowdfun_user_id = result[i].user_id;
-                   
+
                     resp.crowdfund_user_email = result[i].email_id;
-                    
-                    resp.crowd_fund_user_full_name = result[i].first_name+" "+result[i].last_name;
+
+                    resp.crowd_fund_user_full_name = result[i].first_name + " " + result[i].last_name;
                     resp.crowdfund_user_dob = result[i].birth_date;
                     resp.crowdfund_user_type = 1;
                     resp.phone_no = result[i].phone_no;
                     resp.country = result[i].country;
 
-                    
+
                 }
             }
-            else{
+            else {
                 resp.status = "failed";
                 resp.msg = "Email id or Password id wrong.";
             }
-            
 
-            
+
+
             return res.status(200).send(resp);
         });
     }
