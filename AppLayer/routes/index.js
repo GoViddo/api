@@ -3205,6 +3205,8 @@ module.exports = {
                 details.news_image = result[i].news_image;
                 details.news_redirection = result[i].news_redirection;
 
+                details.banner_text_color = result[i].banner_text_color;
+
 
 
                 details.project_given_by_user_id = result[i].email_id;
