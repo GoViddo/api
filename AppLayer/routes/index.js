@@ -3578,6 +3578,7 @@ module.exports = {
                 var details = {};
 
                 details.crowdfund_project_id = result[i].crowdfund_project_id;
+                details.banner_other_data = result[i].banner_other_data;
 
                 details.crowdfund_project_title = result[i].crowdfund_project_title;
                 details.crowdfund_short_description = result[i].crowdfund_short_description;
