@@ -1127,8 +1127,10 @@ module.exports = {
                                     cleosWalletUnlockQuery,
                                     function (err1, data1, stderr1) {
 
-                                        let sendTokens = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"'"+ memo +",'hellogoviddo\"}' -p  hellogoviddo";
+                                        let sendTokens = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\""+ memo +",\"hellogoviddo\"}' -p  hellogoviddo";
                                         console.log(sendTokens);
+
+
 
                                         cmd.get(
                                             sendTokens,
