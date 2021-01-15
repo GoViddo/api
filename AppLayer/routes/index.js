@@ -1127,7 +1127,7 @@ module.exports = {
                                     cleosWalletUnlockQuery,
                                     function (err1, data1, stderr1) {
 
-                                        let sendTokens = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\""+ memo +"\",\"hellogoviddo\"}' -p  hellogoviddo";
+                                        let sendTokens = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\""+ memo +"\"}' -p  hellogoviddo";
                                         console.log(sendTokens);
 
 
@@ -1346,7 +1346,7 @@ module.exports = {
                                     cleosWalletUnlockQuery,
                                     function (err1, data1, stderr1) {
 
-                                        let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"10 shares','hellogoviddo\"}' -p  hellogoviddo";
+                                        let sendEOSTokensRegistration = "cleos -u https://eos.greymass.com/ push action hellogoviddo transfer '{\"from\":\"hellogoviddo\", \"to\":\"" + walletName + "\", \"quantity\":\"0.01 GOV\", \"memo\":\"10 shares\"}' -p  hellogoviddo";
                                         console.log(sendEOSTokensRegistration);
                                         cmd.get(
                                             sendEOSTokensRegistration,
